@@ -8,12 +8,15 @@ import { useDispatch } from "react-redux";
  */
 const AllVinyls = () => {
   const dispatch = useDispatch();
-  const vinyls = useSelector(selectVinyls);
+  // const vinyls = useSelector(selectVinyls);
+  const vinyls = useSelector((state) => {
+    console.log("state", state);
+    return state.vinyl;
+  });
 
   useEffect(() => {
     dispatch(fetchVinyls());
   }, []);
-  // const vinyls = useSelector((state) => state.AllVinyls);
 
   console.log("vinyls", vinyls);
 
@@ -25,9 +28,11 @@ const AllVinyls = () => {
         <ul>
           {vinyls && vinyls.length
             ? vinyls.map((album) => {
-                return <div key={album.id}>{album.name}</div>;
+                console.log("album", vinyls);
+                return <li key={album.id}>{album.vinylName}</li>;
               })
-            : null}
+            : // <li>{vinyls[0].vinylName}</li>
+              null}
         </ul>
       </div>
     </div>
