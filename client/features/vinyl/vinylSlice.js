@@ -16,13 +16,13 @@ const vinylsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchVinyls.fulfilled, (state, action) => {
-     return action.payload;
+      return action.payload;
     });
   },
 });
 
 export const selectVinyls = (state) => {
-  return state.allVinyls
+  return state.allVinyls;
 };
 
 export default vinylsSlice.reducer;
