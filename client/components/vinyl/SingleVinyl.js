@@ -5,34 +5,39 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 
-const SingleVinyl = ({vinylName, description, quantity, price, imageUrl}) => {
+const SingleVinyl = () => {
        
         const {id} = useParams()
         const dispatch = useDispatch();
         const vinyl = useSelector((state) => {
             console.log("state", state);
-           return state.SingleVinyl
+           return state.singleVinyl
           });
         
           useEffect(() => {
             dispatch(fetchSingleVinyl(id));
           }, []);
-        
+
           return (
             <>
             <div>
-                <h1>Album Name {vinyl.vinylName}</h1>
+                <h1>{vinyl.vinylName}</h1>
+                <h2>by {vinyl.artist}</h2>
             </div>
-            <div className="container">{vinyl.imageUrl}</div>
-            <div>About:</div>
+            <img src = {vinyl.imageUrl}></img>
+            <div>About this album:</div>
+            <div>genre:{vinyl.genre}</div>
+            <div>release year: {vinyl.year}</div>
             <p>
                 {vinyl.description}
             </p>
+            <p>Record Label: {vinyl.label}</p>
+    
             <p>
                  Items in Stock :{vinyl.quantity}
             </p>
             <p>
-               Buy today for the low price of ${vinyl.price}
+            <button> Buy Now </button> for the low price of ${vinyl.price}
             </p>
             </>
             )

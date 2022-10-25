@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const fetchSingleVinyl = createAsyncThunk("singleVinyl", async (id) => {
   try {
-    const { data } = await axios.get(`/api/${id}`);
+    const { data } = await axios.get(`/api/vinyls/${id}`);
     return data;
   } catch (err) {
     console.log(err);
@@ -16,7 +16,7 @@ const singleVinylSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchSingleVinyl.fulfilled, (state, action) => {
-      return action.payload;
+    return action.payload;
     });
   },
 });

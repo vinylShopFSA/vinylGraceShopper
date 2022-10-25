@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import AuthForm from "../components/AuthForm";
 import Home from "../components/home/Home";
 import AllVinyls from "../components/vinyl/AllVinyl";
+import SingleVinyl from "../components/vinyl/SingleVinyl";
 import { me } from "./store";
 
 /**
@@ -27,6 +28,11 @@ const AppRoutes = () => {
         </Routes>
       ) : (
         <Routes>
+             <Route
+            path="/singleVinyl/:id"
+            element={<SingleVinyl name="singleVinyl" displayName="singleVinyl" />}
+          />
+          <Route/>
           <Route
             path="/allVinyls"
             element={<AllVinyls name="allVinyls" displayName="All Vinyls" />}
