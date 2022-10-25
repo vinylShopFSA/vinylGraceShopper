@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { fetchVinyls } from "../../features/vinyl/vinylSlice";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 /**
  * COMPONENT
@@ -18,12 +19,21 @@ const AllVinyls = () => {
   return (
     <div>
       <div>
-        All Albums
+        <h1>All Albums</h1>
         <ul>
           {vinyls && vinyls.length
             ? vinyls.map((album) => {
                 console.log("album", vinyls);
-                return <li key={album.id}>{album.vinylName}</li>;
+                return (
+                  <li key={album.id}>
+                    <Link to={`/${album.id}`}>
+                      {album.artist}: {album.vinylName}
+                      <br></br>
+                      <img src={album.imageUrl} width="100px" />
+                      <p>${album.price}</p>
+                    </Link>
+                  </li>
+                );
               })
             : null}
         </ul>

@@ -4,6 +4,7 @@ const {
 } = require("../db");
 module.exports = router;
 
+//GET /api/vinyls
 router.get("/", async (req, res, next) => {
   try {
     const vinyls = await Vinyl.findAll();
