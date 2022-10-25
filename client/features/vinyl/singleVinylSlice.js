@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchSingleVinyl = createAsyncThunk("allVinyls", async (id) => {
+export const fetchSingleVinyl = createAsyncThunk("singleVinyl", async (id) => {
   try {
     const { data } = await axios.get(`/api/${id}`);
     return data;
