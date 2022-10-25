@@ -31,8 +31,7 @@ const AllVinyls = () => {
                 console.log("album", vinyls);
                 return <li key={album.id}>{album.vinylName}</li>;
               })
-            : // <li>{vinyls[0].vinylName}</li>
-              null}
+            : null}
         </ul>
       </div>
     </div>
