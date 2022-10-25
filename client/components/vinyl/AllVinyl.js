@@ -26,7 +26,7 @@ const AllVinyls = () => {
                 console.log("album", vinyls);
                 return (
                   <li key={album.id}>
-                    <Link to={`/${album.id}`}>
+                    <Link to={`/singleVinyl/${album.id}`}>
                       {album.artist}: {album.vinylName}
                       <br></br>
                       <img src={album.imageUrl} width="100px" />
