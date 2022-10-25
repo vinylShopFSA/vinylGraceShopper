@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { fetchVinyls, selectVinyls } from "../../features/vinyl/vinylSlice";
+import { fetchVinyls } from "../../features/vinyl/vinylSlice";
 import { useDispatch } from "react-redux";
 
 /**
@@ -8,19 +8,13 @@ import { useDispatch } from "react-redux";
  */
 const AllVinyls = () => {
   const dispatch = useDispatch();
-  // const vinyls = useSelector(selectVinyls);
   const vinyls = useSelector((state) => {
-    console.log("state", state);
     return state.vinyl;
   });
 
   useEffect(() => {
     dispatch(fetchVinyls());
   }, []);
-
-  console.log("vinyls", vinyls);
-
-  // console.log(fetchVinyls(), "vinyls")
   return (
     <div>
       <div>
