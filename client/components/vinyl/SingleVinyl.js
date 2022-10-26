@@ -7,7 +7,12 @@ import { useParams } from "react-router-dom";
 const SingleVinyl = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+
+  // o: I would destructure this for readability
+  // o: you can rewrite this as useSelector(state => state.singleVinyl)
   const vinyl = useSelector((state) => {
+    // o: once the code is working, please remove console.log statements that
+    //  are for debugging
     console.log("state", state);
     return state.singleVinyl;
   });

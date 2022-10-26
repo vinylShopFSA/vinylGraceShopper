@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
  */
 const AllVinyls = () => {
   const dispatch = useDispatch();
+  // o: you can rewrite this as useSelector(state => state.vinyl)
   const vinyls = useSelector((state) => {
     return state.vinyl;
   });
@@ -21,6 +22,8 @@ const AllVinyls = () => {
       <div>
         <h1>All Albums</h1>
         <ul>
+          {/* o: you can rewrite this as vinyls?.map(...) and it would do this check
+           for you https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining */}
           {vinyls && vinyls.length
             ? vinyls.map((album) => {
                 console.log("album", vinyls);
