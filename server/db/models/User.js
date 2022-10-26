@@ -13,8 +13,34 @@ const User = db.define('user', {
   },
   password: {
     type: Sequelize.STRING,
-  }
-})
+  }, 
+
+  // email: {
+  //   type: Sequelize.STRING,
+  //   unique: true,
+  //   allowNull: false,
+  //   validate: {
+  //     isEmail: true
+  //   },
+  //  },
+  // phone: {
+  //   type: Sequelize.STRING,
+  //   unique: true,
+  //   allowNull: false,
+  //   validate: {
+  //     isPhoneNumber: true
+  //   },
+  //  },
+  // google: {
+  //   type: Sequelize.STRING,
+  //   unique: true,
+  //   allowNull: false,
+  //   validate: {
+  //     isGoogleId: true
+  //   },
+  //  },
+
+  })
 
 module.exports = User
 
@@ -22,7 +48,7 @@ module.exports = User
  * instanceMethods
  */
 User.prototype.correctPassword = function(candidatePwd) {
-  //we need to compare the plain version to an encrypted version of the password
+
   return bcrypt.compare(candidatePwd, this.password);
 }
 
