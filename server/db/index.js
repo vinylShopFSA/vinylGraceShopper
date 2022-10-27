@@ -18,5 +18,7 @@ module.exports = {
   models: {
     User,
     Vinyl,
+    Order,
+    VinylOrder
   },
 };
