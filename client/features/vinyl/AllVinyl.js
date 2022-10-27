@@ -3,11 +3,12 @@ import { useSelector } from "react-redux";
 import { fetchVinyls } from "./vinylSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { addToCart } from "../cart/cartSlice";
 /**
  * COMPONENT
  */
-const AllVinyls = () => {
+const AllVinyls = (props) => {
+  const { onAdd, onRemove } = props;
   const dispatch = useDispatch();
   const vinyls = useSelector((state) => {
     return state.vinyl;
@@ -22,15 +23,24 @@ const AllVinyls = () => {
         <h1>All Albums</h1>
         <ul>
           {vinyls && vinyls.length
-            ? vinyls.map((album) => {
+            ? vinyls.map(({ id, artist, vinylName, price, imageUrl }) => {
                 return (
-                  <li key={album.id}>
-                    <Link to={`/singleVinyl/${album.id}`}>
-                      {album.artist}: {album.vinylName}
+                  <li key={id}>
+                    <Link to={`/singleVinyl/${id}`}>
+                      {artist}: {vinylName}
                       <br></br>
-                      <img src={album.imageUrl} width="100px" />
-                      <p>${album.price}</p>
+                      <img src={imageUrl} width="100px" />
+                      <p>${price}</p>
                     </Link>
+                    <button
+                      onClick={() =>
+                        dispatch(
+                          addToCart({ id, artist, vinylName, price, imageUrl })
+                        )
+                      }
+                    >
+                      Add to Cart
+                    </button>
                   </li>
                 );
               })
