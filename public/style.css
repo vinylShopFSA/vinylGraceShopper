@@ -20,3 +20,10 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.flex-parent {
+  display: flex;
+}
+.flex-child {
+  flex: 1;
+}

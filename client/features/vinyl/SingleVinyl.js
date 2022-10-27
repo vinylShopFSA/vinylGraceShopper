@@ -3,11 +3,24 @@ import { useSelector } from "react-redux";
 import { fetchSingleVinyl } from "./singleVinylSlice";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { addToCart } from "../cart/cartSlice";
 
-const SingleVinyl = () => {
-  const { id } = useParams();
+const SingleVinyl = (props) => {
+  const { onAdd, onRemove } = props;
+  // const { id } = useParams();
   const dispatch = useDispatch();
-  const vinyl = useSelector((state) => {
+  const {
+    id,
+    artist,
+    vinylName,
+    price,
+    imageUrl,
+    genre,
+    year,
+    label,
+    description,
+    quantity,
+  } = useSelector((state) => {
     return state.singleVinyl;
   });
 
@@ -18,19 +31,20 @@ const SingleVinyl = () => {
   return (
     <>
       <div>
-        <h1>{vinyl.vinylName}</h1>
-        <h2>by {vinyl.artist}</h2>
+        <h1>{vinylName}</h1>
+        <h2>by {artist}</h2>
       </div>
-      <img src={vinyl.imageUrl}></img>
+      <img src={imageUrl}></img>
       <div>About this album:</div>
-      <div>genre:{vinyl.genre}</div>
-      <div>release year: {vinyl.year}</div>
-      <p>{vinyl.description}</p>
-      <p>Record Label: {vinyl.label}</p>
+      <div>genre:{genre}</div>
+      <div>release year: {year}</div>
+      <p>{description}</p>
+      <p>Record Label: {label}</p>
 
-      <p>Items in Stock :{vinyl.quantity}</p>
+      <p>Items in Stock :{quantity}</p>
       <p>
-        <button> Buy Now </button> for the low price of ${vinyl.price}
+        <button onClick={() => dispatch(addToCart({id,artist, vinylName, price, imageUrl}))}> Buy Now </button> for
+        the low price of ${price}
       </p>
     </>
   );
