@@ -13,7 +13,7 @@ const Vinyl = db.define("Vinyl", {
   },
   year: Sequelize.INTEGER,
   price: {
-    type: Sequelize.DECIMAL,
+    type: Sequelize.DECIMAL(2),
     allowNull: false,
   },
   quantity: {

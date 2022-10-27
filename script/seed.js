@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Vinyl },
+  models: { User, Vinyl, Order, VinylOrder },
 } = require("../server/db");
 
 /**
@@ -18,6 +18,11 @@ async function seed() {
     User.create({ username: "cody", password: "123" }),
     User.create({ username: "murphy", password: "123" }),
   ]);
+
+
+
+    // VinylOrder.create({
+// await VinylOrder[0].setVinyl(vinyls[0])
 
   const vinyls = await Promise.all([
     Vinyl.create({
@@ -130,7 +135,31 @@ async function seed() {
       imageUrl:
         "https://upload.wikimedia.org/wikipedia/en/f/fb/FMacRumours.PNG",
     }),
+    
   ]);
+     // Creating Orders
+  const orders = await Promise.all([
+    Order.create({
+      purchaseDate: 10-27-2000,
+      status: "fufilled"
+    })
+  ])
+    // Creating Vinyl Orders
+    const vinylOrders = await Promise.all([
+      VinylOrder.create({
+        quantity: 5,
+        VinylId:2,
+        // cost: 19.01,
+       orderId:1
+      }),
+      VinylOrder.create({
+        quantity: 10,
+        // cost: 19.02,
+        VinylId:3,
+        orderId:1
+      })
+    ])
+    await orders[0].setUser(users[1].id);
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
@@ -140,6 +169,8 @@ async function seed() {
       murphy: users[1],
     },
     vinyls,
+    orders,
+    vinylOrders
   };
 }
 
