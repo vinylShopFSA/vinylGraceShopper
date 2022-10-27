@@ -15,31 +15,6 @@ const User = db.define('user', {
     type: Sequelize.STRING,
   }, 
 
-  // email: {
-  //   type: Sequelize.STRING,
-  //   unique: true,
-  //   allowNull: false,
-  //   validate: {
-  //     isEmail: true
-  //   },
-  //  },
-  // phone: {
-  //   type: Sequelize.STRING,
-  //   unique: true,
-  //   allowNull: false,
-  //   validate: {
-  //     isPhoneNumber: true
-  //   },
-  //  },
-  // google: {
-  //   type: Sequelize.STRING,
-  //   unique: true,
-  //   allowNull: false,
-  //   validate: {
-  //     isGoogleId: true
-  //   },
-  //  },
-
   })
 
 module.exports = User

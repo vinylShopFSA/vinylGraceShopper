@@ -28,9 +28,6 @@ router.get('/user/:userId',async (req,res,next) => {
             where: {
                 userId: req.params.userId
             },
-            // include: {
-            //     model: VinylOrder
-            // }
         })
         res.json(singleOrder)
     } catch (err){ 

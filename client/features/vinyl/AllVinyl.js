@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { fetchVinyls } from "../../features/vinyl/vinylSlice";
+import { fetchVinyls } from "./vinylSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -23,7 +23,6 @@ const AllVinyls = () => {
         <ul>
           {vinyls && vinyls.length
             ? vinyls.map((album) => {
-                console.log("album", vinyls);
                 return (
                   <li key={album.id}>
                     <Link to={`/singleVinyl/${album.id}`}>
