@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import AuthForm from "../components/AuthForm";
-import Home from "../components/home/Home";
-import AllVinyls from "../components/vinyl/AllVinyl";
-import SingleVinyl from "../components/vinyl/SingleVinyl";
+import AuthForm from "../features/auth/AuthForm";
+import Home from "../features/home/Home";
+import AllVinyls from "../features/vinyl/AllVinyl";
+import SingleVinyl from "../features/vinyl/SingleVinyl";
 import { me } from "./store";
 
 /**

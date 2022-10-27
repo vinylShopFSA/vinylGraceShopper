@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { fetchSingleVinyl } from "../../features/vinyl/singleVinylSlice";
+import { fetchSingleVinyl } from "./singleVinylSlice";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -8,7 +8,6 @@ const SingleVinyl = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const vinyl = useSelector((state) => {
-    console.log("state", state);
     return state.singleVinyl;
   });
 
