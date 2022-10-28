@@ -11,8 +11,8 @@ export const fetchVinyls = createAsyncThunk("allVinyls", async () => {
 });
 
 const vinylsSlice = createSlice({
-  name: "allVinyls",
-  initialState: [],
+  name: "vinyls",
+  initialState: {},
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchVinyls.fulfilled, (state, action) => {

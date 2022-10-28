@@ -7,6 +7,7 @@ import AllVinyls from "../features/vinyl/AllVinyl";
 import SingleVinyl from "../features/vinyl/SingleVinyl";
 import { me } from "./store";
 import CartComponent from "../features/cart/Cart";
+import OrderComponent from "../features/order/Order";
 
 /**
  * COMPONENT
@@ -72,6 +73,7 @@ const AppRoutes = (props) => {
             }
           />
           <Route path="/cart" element={<CartComponent />} />
+          <Route path="/currentOrder" element={<OrderComponent />} />
         </Routes>
       )}
     </div>

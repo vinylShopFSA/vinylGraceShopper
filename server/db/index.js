@@ -7,11 +7,17 @@ const Vinyl = require("./models/Vinyl");
 const Order = require("./models/Order");
 const VinylOrder = require("./models/VinylOrder");
 
-Order.belongsTo(User)
-User.hasMany(Order)
+Order.belongsTo(User);
+User.hasMany(Order);
 
-Vinyl.belongsToMany(Order, { through: VinylOrder})
-Order.belongsToMany(Vinyl, { through: VinylOrder })
+Vinyl.belongsToMany(Order, { through: VinylOrder });
+Order.belongsToMany(Vinyl, { through: VinylOrder });
+
+Order.hasMany(VinylOrder);
+VinylOrder.belongsTo(Order);
+
+Vinyl.hasMany(VinylOrder);
+VinylOrder.belongsTo(Vinyl);
 
 module.exports = {
   db,
@@ -19,6 +25,6 @@ module.exports = {
     User,
     Vinyl,
     Order,
-    VinylOrder
+    VinylOrder,
   },
 };
