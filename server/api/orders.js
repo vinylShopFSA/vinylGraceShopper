@@ -28,7 +28,9 @@ router.get('/:id',async (req,res,next) => {
 })
 
 //getting a specific user's unfilled order (cart)
-router.get('/user/:userId',async (req,res,next) => {
+//http://localhost:8080/api/orders/users/:userId
+//this the rought to get the orders for specific user
+router.get('/users/:userId',async (req,res,next) => {
     try {
         const userOrder = await Order.findOne({
             include:User,
@@ -43,7 +45,7 @@ router.get('/user/:userId',async (req,res,next) => {
 })
 
 //if no orders, then find or create for user 
-router.get("/user/:userId/findcart", async (req, res, next) => {
+router.get("/users/:userId/findcart", async (req, res, next) => {
     try {
         //place order into array once more
       const [order] = await Order.findOrCreate({

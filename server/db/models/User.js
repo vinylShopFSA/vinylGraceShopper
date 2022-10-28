@@ -21,7 +21,8 @@ const User = db.define('user', {
     allowNull: false,
     validate: {
       isEmail: true,
-    },
+    }
+  },
     firstName: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -34,7 +35,6 @@ const User = db.define('user', {
       type: Sequelize.BOOLEAN,
       defaultValue: false,
     },
-  },
   })
 
 module.exports = User

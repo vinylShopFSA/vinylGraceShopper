@@ -6,6 +6,7 @@ import AllVinyls from "../vinyl/AllVinyl";
  */
 const Home = (props) => {
   const username = useSelector((state) => {
+    console.log(state, "state")
     return state.auth.me.username;
   });
 
