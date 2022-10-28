@@ -15,8 +15,56 @@ async function seed() {
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: "cody", password: "123" }),
-    User.create({ username: "murphy", password: "123" }),
+    // User.create({ username: "cody", password: "123" }),
+    // User.create({ username: "murphy", password: "123" }),
+    User.create({
+      username: "cody",
+      email: "cody123@gmail.com",
+      password: "123",
+      firstName: "Cody",
+      lastName: "Chan",
+      isAdmin: false
+    }),
+    User.create({
+      username: "murphy",
+      email: "murphy123@gmail.com",
+      password: "123",
+      firstName: "Murphy",
+      lastName: "Sod",
+      isAdmin: false
+    }),
+    User.create({
+      username: "paul",
+      email: "paul123@gmail.com",
+      password: "123",
+      firstName: "paul",
+      lastName: "doe",
+      isAdmin: true,
+    }),
+    User.create({
+      username: "ida",
+      email: "ida123@gmail.com",
+      password: "123",
+      firstName: "ida",
+      lastName: "doe",
+      isAdmin: true,
+    }),
+    User.create({
+      username: "david",
+      email: "david123@gmail.com",
+      password: "123",
+      firstName: "david",
+      lastName: "doe",
+      isAdmin: true,
+    }),
+    User.create({
+      username: "bob",
+      password: "123",
+      firstName: "Bob",
+      lastName: "ross",
+      email: "bob123@gmail.com",
+      isAdmin: false
+    }),
   ]);
 
 
@@ -142,32 +190,102 @@ async function seed() {
     Order.create({
       purchaseDate: 10-27-2000,
       status: "fufilled"
-    })
+    }),
+    Order.create({
+      purchaseDate: 10-27-2000,
+      status: "fufilled"
+    }),
+    Order.create({
+      purchaseDate: 10-27-2000,
+      status: "un-fufilled"
+    }),
+    Order.create({
+      purchaseDate: 10-27-2000,
+      status: "fufilled"
+    }),
+    Order.create({
+      purchaseDate: 12-27-2000,
+      status: "un-fufilled"
+    }),
+    Order.create({
+      purchaseDate: 11-27-2000,
+      status: "fufilled"
+    }),
+    Order.create({
+      purchaseDate: 10-29-2000,
+      status: "un-fufilled"
+    }),
+    Order.create({
+      purchaseDate: 10-28-2000,
+      status: "un-fufilled"
+    }),
+    Order.create({
+      purchaseDate: 10-27-2000,
+      status:"un-fufilled"
+    }),
   ])
     // Creating Vinyl Orders
     const vinylOrders = await Promise.all([
       VinylOrder.create({
         quantity: 5,
         VinylId:2,
-        // cost: 19.01,
-       orderId:1
+        orderId:1
       }),
       VinylOrder.create({
-        quantity: 10,
-        // cost: 19.02,
+        quantity: 3,
+        VinylId:5,
+        orderId:6
+      }),
+      VinylOrder.create({
+        quantity: 2,
+        VinylId:4,
+        orderId:8
+      }),  
+       VinylOrder.create({
+        quantity: 8,
+        VinylId:4,
+        orderId:3
+      }),
+      VinylOrder.create({
+        quantity: 9,
         VinylId:3,
-        orderId:1
+        orderId:7
+      }),  
+       VinylOrder.create({
+        quantity: 2,
+        VinylId:4,
+        orderId:2
+      }),   
+      VinylOrder.create({
+        quantity: 4,
+        VinylId:2,
+        orderId:5
+      }),   
+      VinylOrder.create({
+        quantity: 3,
+        VinylId:9,
+        orderId:8
+      }),
+      VinylOrder.create({
+        quantity: 2,
+        VinylId:7,
+        orderId:5
       })
     ])
     await orders[0].setUser(users[1].id);
+    await orders[1].setUser(users[0].id);
+    await orders[2].setUser(users[3].id);
+    await orders[3].setUser(users[4].id);
+    await orders[4].setUser(users[5].id);
+    await orders[5].setUser(users[5].id);
+    await orders[6].setUser(users[2].id);
+    await orders[7].setUser(users[3].id);
+    await orders[8].setUser(users[1].id);
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
   return {
-    users: {
-      cody: users[0],
-      murphy: users[1],
-    },
+    users,
     vinyls,
     orders,
     vinylOrders

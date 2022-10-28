@@ -7,10 +7,10 @@ import { addToCart } from "../cart/cartSlice";
 
 const SingleVinyl = (props) => {
   const { onAdd, onRemove } = props;
-  // const { id } = useParams();
+  const { id } = useParams();
   const dispatch = useDispatch();
   const {
-    id,
+    // id,
     artist,
     vinylName,
     price,
@@ -43,7 +43,7 @@ const SingleVinyl = (props) => {
 
       <p>Items in Stock :{quantity}</p>
       <p>
-        <button onClick={() => dispatch(addToCart({id,artist, vinylName, price, imageUrl}))}> Buy Now </button> for
+        <button onClick={() => dispatch(addToCart({id,artist, vinylName, price, imageUrl}))}> Add to Cart </button> to purchase today for
         the low price of ${price}
       </p>
     </>
