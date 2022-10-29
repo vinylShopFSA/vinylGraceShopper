@@ -4,6 +4,8 @@ import authReducer from "../features/auth/authSlice";
 import vinylReducer from "../features/vinyl/vinylSlice";
 import singleVinylReducer from "../features/vinyl/singleVinylSlice";
 import { cartReducer } from "../features/cart/cartSlice";
+import userReducer from "../features/user/userSlice"
+import singleUserReducer from "../features/user/singleUserSlice";
 
 const store = configureStore({
   reducer: {
@@ -11,6 +13,8 @@ const store = configureStore({
     vinyl: vinylReducer,
     singleVinyl: singleVinylReducer,
     cart: cartReducer,
+    user: userReducer,
+    singleUser: singleUserReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

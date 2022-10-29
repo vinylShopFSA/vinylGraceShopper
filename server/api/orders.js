@@ -29,7 +29,7 @@ router.get('/:id',async (req,res,next) => {
 
 //getting a specific user's unfilled order (cart)
 //http://localhost:8080/api/orders/users/:userId
-//this the rought to get the orders for specific user
+//this is the route to get the orders for specific user
 router.get('/users/:userId',async (req,res,next) => {
     try {
         const userOrder = await Order.findOne({

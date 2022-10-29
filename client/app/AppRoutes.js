@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
+import { me } from "./store";
 import AuthForm from "../features/auth/AuthForm";
 import Home from "../features/home/Home";
 import AllVinyls from "../features/vinyl/AllVinyl";
 import SingleVinyl from "../features/vinyl/SingleVinyl";
-import { me } from "./store";
 import CartComponent from "../features/cart/Cart";
+import UserProfile from "../features/user/userProfile";
 
 /**
  * COMPONENT
@@ -23,18 +24,15 @@ const AppRoutes = (props) => {
 
   return (
     <div>
-      {isLoggedIn ? (
         <Routes>
-          <Route path="/*" element={<Home />} />
-          <Route to="/home" element={<Home />} />
-          <Route
+        <Route
             path="/allVinyls"
             element={<AllVinyls name="allVinyls" displayName="All Vinyls" />}
           />
-        </Routes>
-      ) : (
-        <Routes>
-          <Route
+          {/* <div>
+                  <AllVinyls onAdd={onAdd} onRemove={onRemove} />
+                </div> */}
+           <Route
             path="/singleVinyl/:id"
             element={
               <SingleVinyl
@@ -46,10 +44,7 @@ const AppRoutes = (props) => {
             }
           />
           <Route />
-          <Route
-            path="/allVinyls"
-            element={<AllVinyls name="allVinyls" displayName="All Vinyls" />}
-          />
+          <Route path="/cart" element={<CartComponent />} />
           <Route
             path="/signup"
             element={<AuthForm name="signup" displayName="Sign Up" />}
@@ -58,20 +53,19 @@ const AppRoutes = (props) => {
             path="/login"
             element={<AuthForm name="login" displayName="Login" />}
           />
-          <Route
-            path="/*"
-            element={
-              <>
-                <div>
-                  <AuthForm name="login" displayName="Login" />
-                </div>
-                <div>
-                  <AllVinyls onAdd={onAdd} onRemove={onRemove} />
-                </div>
-              </>
-            }
-          />
-          <Route path="/cart" element={<CartComponent />} />
+         <Route path="/" element={<Home/>} />
+
+        </Routes>
+      {isLoggedIn ? (
+        <Routes>
+           <Route path="/userProfile" element={<UserProfile/>} />
+          {/* <Route path="/" element={<Home />} /> */}
+          {/* <Route to="/home" element={<Home />} /> */}
+
+        </Routes>
+      ) : (
+        <Routes>
+     
         </Routes>
       )}
     </div>

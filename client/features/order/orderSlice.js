@@ -25,10 +25,10 @@ export const fetchSingleOrder = createAsyncThunk(
 );
 
 export const fetchUserOrderHistory = createAsyncThunk(
-  "/orders/user/:userId",
+  "/orders/users/:userId",
   async (userId) => {
     try {
-      const { data } = await axios.get(`/api/orders/user/${userId}/`);
+      const { data } = await axios.get(`/api/orders/users/${userId}/`);
       console.log(data);
       return data;
     } catch (e) {

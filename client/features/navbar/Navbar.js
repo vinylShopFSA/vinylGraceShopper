@@ -16,7 +16,7 @@ const Navbar = (props) => {
   return (
     <div>
       <div>
-        <Link to="/">
+        <Link to="/AllVinyls">
           <h1>
             The Groove{" "}
             <img
@@ -41,6 +41,8 @@ const Navbar = (props) => {
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
+
+            <Link to = "/userProfile">View Profile </Link>
             <Link to="/">Home</Link>
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
