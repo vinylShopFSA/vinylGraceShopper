@@ -47,6 +47,9 @@ const Navbar = (props) => {
             {isAdmin && (
                   <Link
                     to="/userList" > View User List </Link> )}
+            {isAdmin && (
+                  <Link
+                    to="/addAlbum" > Add an Album </Link> )}
             <Link to="/">Home</Link>
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout

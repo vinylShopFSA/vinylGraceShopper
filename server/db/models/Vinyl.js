@@ -5,11 +5,11 @@ const Vinyl = db.define("Vinyl", {
   vinylName: {
     type: Sequelize.STRING,
     allowNull: false,
+
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue:
-      "https://s3.amazonaws.com/static.tumblr.com/jn9hrij/20Ul2zzsr/albumart.jpg",
+    defaultValue: "https://s3.amazonaws.com/static.tumblr.com/jn9hrij/20Ul2zzsr/albumart.jpg",
   },
   year: Sequelize.INTEGER,
   price: {
@@ -25,7 +25,7 @@ const Vinyl = db.define("Vinyl", {
     allowNull: false,
   },
   description: {
-    type: Sequelize.TEXT,
+    type: Sequelize.STRING,
     allowNull: false,
   },
   genre: {

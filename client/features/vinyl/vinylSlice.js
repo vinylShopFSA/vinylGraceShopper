@@ -17,7 +17,7 @@ export const addNewVinyl = createAsyncThunk("addVinyl", async (vinyl) => {
     if(token) {
       const { data } = await axios.post(`/api/admin/vinyls/add`, vinyl, {
         headers: {
-          Authorization:token,
+          authorization:token,
         }
       });
       return data;
