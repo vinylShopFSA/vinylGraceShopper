@@ -5,7 +5,7 @@ const {
 const { userOrAdminCheck } = require("./checkers");
 
 
-router.use("/orders", userOrAdminCheck, require("./orders.js"));
+router.use("/orders", require("./orders.js"));
 router.use("/vinyls", require("./vinyls"));
 router.use("/admin", require("./admin"));
 // router.use('/vinylorder', require("./vinylOrder"))

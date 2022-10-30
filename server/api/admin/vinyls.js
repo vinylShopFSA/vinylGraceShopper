@@ -4,7 +4,7 @@ const {
   models: { Vinyl },
 } = require("../../db");
 
-router.post("/add", checkAdmin, async (req, res, next) => {
+router.post("/add", async (req, res, next) => {
     try {
       const newVinyl = await Vinyl.create(req.body);
       res.json(newVinyl);
@@ -13,7 +13,7 @@ router.post("/add", checkAdmin, async (req, res, next) => {
     }
   });
 
-router.put("/:id", checkAdmin, async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   try {
     const editVinyl = await Vinyl.findByPk(req.params.id);
     await editVinyl.update(req.body);
@@ -23,7 +23,7 @@ router.put("/:id", checkAdmin, async (req, res, next) => {
   }
 });
 
-router.delete("/:id", checkAdmin, async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
     const deleteVinyl = await Vinyl.findByPk(req.params.id);
     await deleteVinyl.destroy();
