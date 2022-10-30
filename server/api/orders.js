@@ -7,9 +7,9 @@ const {
 router.get('/',async (req,res,next) => {
     try{
         const orders = await Order.findAll({
-            where: {
-                status: 'un-fufilled',
-            },
+            // where: {
+            //     status: 'un-fufilled',
+            // },
         })
         res.json(orders)
     }catch (err){ 

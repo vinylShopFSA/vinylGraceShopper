@@ -9,7 +9,6 @@ const SingleUser = (props) => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const {
-    // id,
     UserName,
     email,
     firstName,

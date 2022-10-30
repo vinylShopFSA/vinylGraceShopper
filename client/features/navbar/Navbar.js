@@ -5,12 +5,13 @@ import { logout } from "../../app/store";
 
 const Navbar = (props) => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const isAdmin = useSelector((state) => !!state.auth.me.isAdmin);
   const { countCartItems } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutAndRedirectHome = () => {
     dispatch(logout());
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -43,6 +44,9 @@ const Navbar = (props) => {
             {/* The navbar will show these links after you log in */}
 
             <Link to = "/userProfile">View Profile </Link>
+            {isAdmin && (
+                  <Link
+                    to="/userList" > View User List </Link> )}
             <Link to="/">Home</Link>
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout

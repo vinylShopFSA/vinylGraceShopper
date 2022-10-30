@@ -6,9 +6,27 @@ export const fetchVinyls = createAsyncThunk("allVinyls", async () => {
     const { data } = await axios.get(`/api/vinyls`);
     return data;
   } catch (err) {
-    console.log(err);
+    console.log(`${err} from get all vinyls`);
   }
 });
+
+export const addNewVinyl = createAsyncThunk("addVinyl", async (vinyl) => {
+  const token = window.localStorage.getItem("token");
+  console.log(token)
+  try {
+    if(token) {
+      const { data } = await axios.post(`/api/admin/vinyls/add`, vinyl, {
+        headers: {
+          Authorization:token,
+        }
+      });
+      return data;
+    }
+  } catch (err) {
+    console.log(`${err} from adding new vinyl`);
+  }
+});
+
 
 const vinylsSlice = createSlice({
   name: "allVinyls",

@@ -13,8 +13,8 @@ const store = configureStore({
     vinyl: vinylReducer,
     singleVinyl: singleVinylReducer,
     cart: cartReducer,
-    user: userReducer,
-    singleUser: singleUserReducer,
+    users: userReducer,
+    user: singleUserReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

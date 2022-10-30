@@ -1,5 +1,7 @@
 const router = require("express").Router();
-const User = require("../db/models/User")
+const {
+  models: { User },
+} = require("../db");
 const { userOrAdminCheck } = require("./checkers");
 
 
@@ -13,6 +15,7 @@ router.use("*", async (req, res, next) => {
   if (req.headers.authorization) {
     const user = await User.findByToken(req.headers.authorization);
     req.user = user;
+    console.log(user, "user")
   }
   next();
 });

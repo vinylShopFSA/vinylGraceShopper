@@ -1,16 +1,16 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Navbar from "../features/navbar/Navbar";
-import { useState } from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 
 import AppRoutes from "./AppRoutes";
+import CartComponent from "../features/cart/Cart";
 
 const App = () => {
   // const [cartItems, setCartItems] = useState([]);
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart.cart);
-  console.log(cart);
   const getTotalQuantity = () => {
     let total = 0;
     cart.forEach((item) => {
@@ -28,7 +28,9 @@ const App = () => {
 
   return (
     <div>
-      <Navbar countCartItems={getTotalQuantity() || 0} />
+      <Navbar 
+      countCartItems={getTotalQuantity() || 0} 
+      />
       {/* countCartItems={cartItems.length} */}
       <AppRoutes />
     </div>

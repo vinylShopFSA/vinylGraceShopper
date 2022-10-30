@@ -16,7 +16,6 @@ const { user, isLoggedIn } = useSelector((state) => {
 const {id,email, firstName,createdAt, username} = user
   useEffect(() => {
     dispatch(fetchSingleUser(user.id));
-    dispatch(fetchUserOrderHistory(user.id))
   }, []);
 
   return (

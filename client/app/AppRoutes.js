@@ -8,6 +8,7 @@ import AllVinyls from "../features/vinyl/AllVinyl";
 import SingleVinyl from "../features/vinyl/SingleVinyl";
 import CartComponent from "../features/cart/Cart";
 import UserProfile from "../features/user/userProfile";
+import ViewUser from "../features/admin/ViewUsers";
 
 /**
  * COMPONENT
@@ -16,6 +17,7 @@ import UserProfile from "../features/user/userProfile";
 const AppRoutes = (props) => {
   const { onAdd, onRemove } = props;
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const isAdmin = useSelector((state) => !!state.auth.me.isAdmin)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const AppRoutes = (props) => {
         <Routes>
         <Route
             path="/allVinyls"
-            element={<AllVinyls name="allVinyls" displayName="All Vinyls" />}
+            element={<AllVinyls onAdd={onAdd} onRemove={onRemove}name="allVinyls" displayName="All Vinyls" />}
           />
           {/* <div>
                   <AllVinyls onAdd={onAdd} onRemove={onRemove} />
@@ -61,6 +63,7 @@ const AppRoutes = (props) => {
            <Route path="/userProfile" element={<UserProfile/>} />
           {/* <Route path="/" element={<Home />} /> */}
           {/* <Route to="/home" element={<Home />} /> */}
+          {isAdmin && <Route  path="/userList" element={<ViewUser/>} />}
 
         </Routes>
       ) : (

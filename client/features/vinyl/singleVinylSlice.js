@@ -6,7 +6,39 @@ export const fetchSingleVinyl = createAsyncThunk("singleVinyl", async (id) => {
     const { data } = await axios.get(`/api/vinyls/${id}`);
     return data;
   } catch (err) {
-    console.log(err);
+    console.log(`${err} from get all Vinyls`);
+  }
+});
+
+export const editSingleVinyl = createAsyncThunk("editVinyl", async (id,vinyl) => {
+  const token = window.localStorage.getItem("token");
+  try {
+    if(token) {
+      const { data } = await axios.put(`/api/admin/vinyls/${id}`, vinyl,{
+        headers: {
+          Authorization:token
+        },
+      });
+      return data;
+    }
+  } catch (err) {
+    console.log(`${err} from  edit Vinyl`);
+  }
+});
+
+export const deleteSingleVinyl = createAsyncThunk("deleteVinyl", async (vinyl) => {
+  const token = window.localStorage.getItem("token");
+  try {
+    if(token) {
+      const { data } = await axios.delete(`/api/admin/vinyls/${vinyl}`,{
+        headers: {
+          Authorization:token
+        },
+      });
+      return data;
+    }
+  } catch (err) {
+    console.log(`${err} from  delete Vinyl`);
   }
 });
 
