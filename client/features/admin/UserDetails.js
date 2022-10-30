@@ -10,9 +10,6 @@ const UserDetails = (props) => {
 
 <>
 <div> {user.username}</div>
-<div> {user.email}</div>
-<div> {user.firstName}</div>
-<div> {user.lastName}</div>
 <div> ------------------------------</div>
 </>
 

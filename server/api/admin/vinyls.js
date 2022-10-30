@@ -1,10 +1,10 @@
 const router = require("express").Router();
-const{checkAdmin} = require("../checkers")
+const{checkUser,checkAdmin} = require("../checkers")
 const {
   models: { Vinyl },
 } = require("../../db");
 
-router.post("/add", async (req, res, next) => {
+router.post("/add",checkUser,checkAdmin, async (req, res, next) => {
     try {
       const newVinyl = await Vinyl.create(req.body);
       res.json(newVinyl);
@@ -13,7 +13,7 @@ router.post("/add", async (req, res, next) => {
     }
   });
 
-router.put("/:id", async (req, res, next) => {
+router.put("/:id",checkUser,checkAdmin, async (req, res, next) => {
   try {
     const editVinyl = await Vinyl.findByPk(req.params.id);
     await editVinyl.update(req.body);
@@ -23,7 +23,7 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id",checkUser, checkAdmin,async (req, res, next) => {
   try {
     const deleteVinyl = await Vinyl.findByPk(req.params.id);
     await deleteVinyl.destroy();

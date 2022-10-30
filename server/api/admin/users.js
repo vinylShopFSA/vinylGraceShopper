@@ -1,19 +1,15 @@
 const router = require("express").Router();
-const {checkAdmin, userOrAdminCheck} = require("../checkers")
+const {checkUser, checkAdmin} = require("../checkers")
 const {
   models: { User},
 } = require("../../db");
 
-router.get("/", async (req, res, next) => {
+router.get("/", checkUser,checkAdmin, async (req, res, next) => {
     try {
       const users = await User.findAll({
         attributes: [
           "id",
           "username",
-          "email",
-          "firstName",
-          "lastName",
-          "isAdmin",
         ],
       });
       res.json(users);
@@ -22,7 +18,7 @@ router.get("/", async (req, res, next) => {
     }
   });
   
-  router.get("/:id", async (req, res, next) => {
+  router.get("/:id", checkUser,async (req, res, next) => {
     try {
       const findUser = await User.findByPk(req.params.id);
       res.json(findUser);
@@ -31,7 +27,7 @@ router.get("/", async (req, res, next) => {
     }
   });
   
-  router.put("/:id", async (req, res, next) => {
+  router.put("/:id", checkUser,checkAdmin,async (req, res, next) => {
     try {
       const editUser = await User.findByPk(req.params.id);
       await editUser.update(req.body);
@@ -41,7 +37,7 @@ router.get("/", async (req, res, next) => {
     }
   });
   
-  router.delete("/:id", async (req, res, next) => {
+  router.delete("/:id", checkUser,checkAdmin,async (req, res, next) => {
     try {
       const deleteUser = await User.findByPk(req.params.id);
       await deleteUser.destroy();

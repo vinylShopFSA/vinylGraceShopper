@@ -12,7 +12,6 @@ export const fetchVinyls = createAsyncThunk("allVinyls", async () => {
 
 export const addNewVinyl = createAsyncThunk("addVinyl", async (vinyl) => {
   const token = window.localStorage.getItem("token");
-  console.log(token)
   try {
     if(token) {
       const { data } = await axios.post(`/api/admin/vinyls/add`, vinyl, {
