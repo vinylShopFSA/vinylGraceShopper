@@ -15,11 +15,6 @@ const VinylOrder = db.define('vinylOrder', {
         validate: {
             notEmpty: true
     },
-    // cost:{
-    //     type: Sequelize.FLOAT,
-    //     allowNull: false,
-    //    defaultValue: null
-    // }
  }
 })
 

@@ -1,62 +1,55 @@
-const router = require('express').Router()
+const router = require("express").Router();
 const {
-    models: { Order,Vinyl,User },
-  } = require("../db");
-const VinylOrder = require('../db/models/VinylOrder');
+  models: { Order, Vinyl, VinylOrder, User },
+} = require("../db");
 
-router.get('/',async (req,res,next) => {
-    try{
-        const orders = await Order.findAll()
-        res.json(orders)
-    }catch (err){ 
-        next(err)
+//getting a specific user's unfilled order (cart)
+//http://localhost:8080/api/orders/users/:userId
+//this the rought to get the orders for specific user
+router.get("/:userId/cart", async (req, res, next) => {
+  try {
+    const userOrder = await Order.findOne({
+      where: {
+        userId: req.params.userId,
+        status: "unfulfilled",
+      },
+      include: [VinylOrder],
+    });
+    if (userOrder) res.json(userOrder);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/:userId", async (req, res, next) => {
+  try {
+    const order = await Order.create({
+      where: { userId: req.params.userId },
+      userId: req.params.userId,
+      status: "unfulfilled",
+    });
+    res.send(order);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put("/:userId/checkout", async (req, res, next) => {
+  try {
+    const order = await Order.findOne({
+      where: {
+        userId: req.params.userId,
+        status: "unfulfilled",
+      },
+    });
+    if (order) {
+      res.json(await order.update({ status: "fulfilled" }));
+    } else {
+      res.status(404).json({ message: "No unfufilled cart found" });
     }
-})
+  } catch (err) {
+    next(err);
+  }
+});
 
-router.get('/:id',async (req,res,next) => {
-    try {
-        const singleOrder = await Order.findByPk(req.params.id)
-        res.json(singleOrder)
-    } catch (err){ 
-        next(err)
-    }
-})
-
-router.get('/user/:userId',async (req,res,next) => {
-    try {
-        const singleOrder = await Order.findAll({
-            where: {
-                userId: req.params.userId
-            },
-        })
-        res.json(singleOrder)
-    } catch (err){ 
-        next(err)
-    }
-})
-
-router.post('/',async (req,res,next) => {
-    try {
-        if(!req.body.id) {
-            const order = await Order.create(req.body)
-           res.json(order)
-        } else {
-            const order = await Order.findOne(req.body.id)
-            res.json(order)
-        }
-        } catch (err){ 
-        next(err)
-        }
-    })
-
-    router.put('/:id',async (req,res,next) => {
-        try {
-            const order = await Order.update(req.body)
-            res.json(order)
-        } catch (err){
-            next(err)
-        }
-    })
-
-
-module.exports = router
+module.exports = router;

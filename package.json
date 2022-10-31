@@ -27,7 +27,8 @@
     "morgan": "^1.10.0",
     "pg": "^8.8.0",
     "redux-persist": "^6.0.0",
-    "sequelize": "^6.25.3"
+    "sequelize": "^6.25.3",
+    "util": "^0.12.5"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",

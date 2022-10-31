@@ -26,7 +26,7 @@ const Navbar = (props) => {
           </h1>
         </Link>
         <h4>NYC's Best Vinyl Selection Since 2022</h4>
-        <Link to="/cart">
+        <Link to="/currentOrder">
           <h4>
             <img
               src="https://freepngimg.com/thumb/categories/1325.png"

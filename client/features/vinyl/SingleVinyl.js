@@ -3,14 +3,16 @@ import { useSelector } from "react-redux";
 import { fetchSingleVinyl } from "./singleVinylSlice";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addToCart } from "../cart/cartSlice";
+import { addVinylOrder, fetchVinylOrders } from "../order/vinylOrderSlice";
 
-const SingleVinyl = (props) => {
-  const { onAdd, onRemove } = props;
-  // const { id } = useParams();
+const SingleVinyl = () => {
+  const user = useSelector((state) => state.auth.me);
+  const userId = user.id;
+
+  const { id } = useParams();
   const dispatch = useDispatch();
   const {
-    id,
+    // id,
     artist,
     vinylName,
     price,
@@ -20,9 +22,7 @@ const SingleVinyl = (props) => {
     label,
     description,
     quantity,
-  } = useSelector((state) => {
-    return state.singleVinyl;
-  });
+  } = useSelector((state) => state.singleVinyl);
 
   useEffect(() => {
     dispatch(fetchSingleVinyl(id));
@@ -43,8 +43,18 @@ const SingleVinyl = (props) => {
 
       <p>Items in Stock :{quantity}</p>
       <p>
-        <button onClick={() => dispatch(addToCart({id,artist, vinylName, price, imageUrl}))}> Buy Now </button> for
-        the low price of ${price}
+        <button
+          onClick={async () => {
+            await dispatch(
+              addVinylOrder({ userId, VinylId: parseInt(id), quantity: 1 })
+            );
+            await dispatch(fetchVinylOrders(userId));
+          }}
+        >
+          {" "}
+          Add to Cart{" "}
+        </button>{" "}
+        to purchase today for the low price of ${price}
       </p>
     </>
   );
