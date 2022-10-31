@@ -78,61 +78,6 @@ import {
   );
 };
 
-{/* <div> */}
-{/* <div> */}
-
-  {/* <img src="https://i.ibb.co/sj1f5kH/Albums-3.png" width="300px"></img>
- 
-  <Grid container>
-    {vinyls && vinyls.length
-      ? vinyls.map(({ id, artist, vinylName, price, imageUrl }) => {
-          return (
-            <Grid item key={id} xs={12} sm={6} md={4} lg={4}>
-              <CardContent>
-                <Link to={`/singleVinyl/${id}`}>
-                  <Button>
-                    <Typography
-                      variant="h6"
-                      fontFamily="Barlow Condensed"
-                    >
-                      {artist}: {vinylName}
-                    </Typography>
-                  </Button>
-
-                  <br></br>
-                  <img src={imageUrl} loading="lazy" />
-                </Link>
-                <br></br>
-
-                <Button
-                  variant="outlined"
-                  aria-label="Add to Collection"
-                  onClick={() =>
-                    dispatch(
-                      addToCart({
-                        id,
-                        artist,
-                        vinylName,
-                        price,
-                        imageUrl,
-                      })
-                    )
-                  }
-                >
-                  <Typography fontFamily="Barlow Condensed">
-                    Add to Cart ${price}
-                  </Typography>
-                </Button>
-              </CardContent>
-            </Grid>
-          );
-        })
-      : null}
-  </Grid>
-</div>
-</div>
-);
-}; */}
 
 
 export default AllVinyls;
