@@ -5,7 +5,6 @@ const TOKEN = 'token';
 
 export const fetchUsers = createAsyncThunk("allUsers", async () => {
   const token = window.localStorage.getItem('token');
-  console.log(token)
   try {
     if(token) {
       const { data } = await axios.get(`/api/admin/users` ,{

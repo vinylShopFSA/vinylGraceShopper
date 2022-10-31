@@ -1,14 +1,10 @@
 const router = require("express").Router();
-const {
-  models: { User },
-} = require("../db");
-const { checkUser } = require("./checkers");
+module.exports = router;
 
-
-router.use("/orders",checkUser, require("./orders.js"));
+router.use("/users", require("./admin/users"));
 router.use("/vinyls", require("./vinyls"));
-router.use("/admin", require("./admin"));
-// router.use('/vinylorder', require("./vinylOrder"))
+router.use('/orders', require("./orders"));
+router.use('/vinylorder', require("./vinylOrder"))
 // router.use('/cart', require("./vinylCart")) 
 
 router.use((req, res, next) => {
@@ -16,5 +12,3 @@ router.use((req, res, next) => {
   error.status = 404;
   next(error);
 });
-
-module.exports = router;

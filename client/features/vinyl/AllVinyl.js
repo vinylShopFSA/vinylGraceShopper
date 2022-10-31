@@ -3,21 +3,14 @@ import { useSelector } from "react-redux";
 import { fetchVinyls } from "./vinylSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
-
-=======
 import { addVinylOrder, fetchVinylOrders } from "../order/vinylOrderSlice";
->>>>>>> 7adb85ff2c272cee892836ea2e1c0d2eb3828a29
 /**
  * COMPONENT
  */
-const AllVinyls = () => {
-<<<<<<< HEAD
-=======
+ const AllVinyls = () => {
   const user = useSelector((state) => state.auth.me);
   const userId = user.id;
 
->>>>>>> 7adb85ff2c272cee892836ea2e1c0d2eb3828a29
   const dispatch = useDispatch();
   const vinyls = useSelector((state) => state.vinyl);
 
@@ -30,17 +23,15 @@ const AllVinyls = () => {
         <h1>All Albums</h1>
         <ul>
           {vinyls && vinyls.length
-            ? vinyls.map((album) => {
+            ? vinyls.map(({ id, artist, vinylName, price, imageUrl }) => {
                 return (
-                  <li key={album.id}>
-                    <Link to={`/singleVinyl/${album.id}`}>
-                      {album.artist}: {album.vinylName}
+                  <li key={id}>
+                    <Link to={`/singleVinyl/${id}`}>
+                      {artist}: {vinylName}
                       <br></br>
-                      <img src={album.imageUrl} width="100px" />
-                      <p>${album.price}</p>
+                      <img src={imageUrl} width="100px" />
+                      <p>${price}</p>
                     </Link>
-<<<<<<< HEAD
-=======
                     <button
                       onClick={async () => {
                         await dispatch(
@@ -55,7 +46,6 @@ const AllVinyls = () => {
                     >
                       Add to Cart
                     </button>
->>>>>>> 7adb85ff2c272cee892836ea2e1c0d2eb3828a29
                   </li>
                 );
               })
