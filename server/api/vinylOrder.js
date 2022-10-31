@@ -1,8 +1,15 @@
+<<<<<<< HEAD
+// const router = require('express').Router()
+// const {
+//     models: { Order,Vinyl,User, VinylOrder},
+//   } = require("../db");
+=======
 const router = require("express").Router();
 const { request } = require("express");
 const {
   models: { Order, Vinyl, User, VinylOrder },
 } = require("../db");
+>>>>>>> 7adb85ff2c272cee892836ea2e1c0d2eb3828a29
 
 // router.get("/", async (req, res, next) => {
 //   try {
@@ -13,6 +20,39 @@ const {
 //   }
 // });
 
+<<<<<<< HEAD
+//   router.get('/',async (req,res,next) => {
+//     try {
+//         const items = await VinylOrder.findAll()
+//         res.json(items)
+//     } catch (err){ 
+//         next(err)
+//     }
+// })
+// // router.get('/:id',async (req,res,next) => {
+// //     try {
+// //         const singleItem = await VinylOrder.findByPk(req.params.id)
+// //         res.json(singleItem)
+// //     } catch (err){ 
+// //         next(err)
+// //     }
+// // })
+
+// router.get('/:id',async (req,res,next) => {
+//     try {
+//         const allItems = await VinylOrder.findAll({
+//             where: {
+//                 orderId: req.params.id
+//             }
+//         })
+//         res.json(allItems)
+//     } catch (err){ 
+//         next(err)
+//     }
+// })
+
+// module.exports = router
+=======
 // router.get("/:orderId", async (req, res, next) => {
 //   try {
 //     const allItems = await VinylOrder.findAll({
@@ -144,3 +184,4 @@ router.delete("/:userId/cart/:VinylId", async (req, res, next) => {
   }
 });
 module.exports = router;
+>>>>>>> 7adb85ff2c272cee892836ea2e1c0d2eb3828a29

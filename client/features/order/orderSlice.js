@@ -14,6 +14,18 @@ export const fetchSingleOrder = createAsyncThunk(
   }
 );
 
+<<<<<<< HEAD
+export const fetchUserOrderHistory = createAsyncThunk(
+  "/orders/users/:userId",
+  async (userId) => {
+    try {
+      const { data } = await axios.get(`/api/orders/users/${userId}/`);
+      console.log(data);
+      return data;
+    } catch (e) {
+      console.log("oops");
+    }
+=======
 // export const fetchUserOrderHistory = createAsyncThunk(
 //   "/orders/user/:userId",
 //   async (userId) => {
@@ -43,6 +55,7 @@ export const checkout = createAsyncThunk(
   async ({ userId }) => {
     const { data } = await axios.put(`/api/orders/${userId}/checkout`);
     return data;
+>>>>>>> 7adb85ff2c272cee892836ea2e1c0d2eb3828a29
   }
 );
 

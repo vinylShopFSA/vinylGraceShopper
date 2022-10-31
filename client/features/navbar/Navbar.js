@@ -5,18 +5,19 @@ import { logout } from "../../app/store";
 
 const Navbar = (props) => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const isAdmin = useSelector((state) => !!state.auth.me.isAdmin);
   const { countCartItems } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutAndRedirectHome = () => {
     dispatch(logout());
-    navigate("/login");
+    navigate("/");
   };
 
   return (
     <div>
       <div>
-        <Link to="/">
+        <Link to="/AllVinyls">
           <h1>
             The Groove{" "}
             <img
@@ -41,6 +42,14 @@ const Navbar = (props) => {
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
+
+            <Link to = "/userProfile">View Profile </Link>
+            {isAdmin && (
+                  <Link
+                    to="/userList" > View User List </Link> )}
+            {isAdmin && (
+                  <Link
+                    to="/addAlbum" > Add an Album </Link> )}
             <Link to="/">Home</Link>
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
