@@ -4,6 +4,18 @@ import { fetchVinyls } from "./vinylSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addVinylOrder, fetchVinylOrders } from "../order/vinylOrderSlice";
+import {
+  ImageList,
+  Button,
+  ImageListItem,
+  CardContent,
+  CardMedia,
+  CardActionArea,
+  Card,
+  Grid,
+  Typography,
+} from "@mui/material";
+
 /**
  * COMPONENT
  */
@@ -17,22 +29,30 @@ import { addVinylOrder, fetchVinylOrders } from "../order/vinylOrderSlice";
   useEffect(() => {
     dispatch(fetchVinyls());
   }, []);
+
   return (
     <div>
       <div>
-        <h1>All Albums</h1>
-        <ul>
-          {vinyls && vinyls.length
-            ? vinyls.map(({ id, artist, vinylName, price, imageUrl }) => {
+      <img src="https://i.ibb.co/sj1f5kH/Albums-3.png" width="300px"></img>
+          {vinyls?.map(({ id, artist, vinylName, price, imageUrl }) => {
                 return (
-                  <li key={id}>
-                    <Link to={`/singleVinyl/${id}`}>
+                   <Grid item key={id} xs={12} sm={6} md={4} lg={4}>
+              <CardContent>
+                <Link to={`/singleVinyl/${id}`}>
+                  <Button>
+                    <Typography
+                      variant="h6"
+                      fontFamily="Barlow Condensed"
+                    >
                       {artist}: {vinylName}
-                      <br></br>
-                      <img src={imageUrl} width="100px" />
-                      <p>${price}</p>
-                    </Link>
-                    <button
+                    </Typography>
+                  </Button>
+                  <img src={imageUrl} loading="lazy" />
+                </Link>
+                <br></br>
+                <Button
+                  variant="outlined"
+                  aria-label="Add to Collection"
                       onClick={async () => {
                         await dispatch(
                           addVinylOrder({
@@ -42,18 +62,21 @@ import { addVinylOrder, fetchVinylOrders } from "../order/vinylOrderSlice";
                           })
                         );
                         await dispatch(fetchVinylOrders(userId));
-                      }}
-                    >
-                      Add to Cart
-                    </button>
-                  </li>
+                      }}>
+                      <Typography fontFamily="Barlow Condensed">
+                      Add to Cart ${price}
+                    </Typography>
+                  </Button>
+                </CardContent>
+              </Grid>
                 );
               })
-            : null}
-        </ul>
+            }
       </div>
     </div>
   );
 };
+
+
 
 export default AllVinyls;

@@ -37,13 +37,7 @@ const AppRoutes = (props) => {
   return (
     <div>
         <Routes>
-        <Route
-            path="/allVinyls"
-            element={<AllVinyls onAdd={onAdd} onRemove={onRemove}name="allVinyls" displayName="All Vinyls" />}
-          />
-          {/* <div>
-                  <AllVinyls onAdd={onAdd} onRemove={onRemove} />
-                </div> */}
+        <Route path = "/allVinyls" element = {<AllVinyls/>}/>
            <Route
             path="/singleVinyl/:id"
             element={
@@ -70,12 +64,21 @@ const AppRoutes = (props) => {
         </Routes>
       {isLoggedIn ? (
         <Routes>
+              <Route
+            path="/allVinyls"
+            element={
+              <AllVinyls
+                name="allVinyls"
+                displayName="All Vinyls"
+                userId={userId}
+              />}/>
            <Route path="/userProfile" element={<UserProfile/>} />
            <Route
             path="/currentOrder"
             element={<OrderComponent userId={userId} />}
           />
           <Route path="/checkout" element={<Checkout />} />
+
           {/* <Route path="/" element={<Home />} /> */}
           {/* <Route to="/home" element={<Home />} /> */}
           {isAdmin && <Route  path="/userList" element={<ViewUser/>} />}

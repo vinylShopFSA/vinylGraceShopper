@@ -2,17 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchSingleVinyl = createAsyncThunk("singleVinyl", async (id) => {
-  try {
     const { data } = await axios.get(`/api/vinyls/${id}`);
     return data;
-  } catch (err) {
-    console.log(`${err} from get all Vinyls`);
-  }
 });
 
 export const editSingleVinyl = createAsyncThunk("editVinyl", async (id,vinyl) => {
   const token = window.localStorage.getItem("token");
-  try {
     if(token) {
       const { data } = await axios.put(`/api/admin/vinyls/${id}`, vinyl,{
         headers: {
@@ -21,14 +16,11 @@ export const editSingleVinyl = createAsyncThunk("editVinyl", async (id,vinyl) =>
       });
       return data;
     }
-  } catch (err) {
-    console.log(`${err} from  edit Vinyl`);
-  }
 });
 
 export const deleteSingleVinyl = createAsyncThunk("deleteVinyl", async (vinyl) => {
   const token = window.localStorage.getItem("token");
-  try {
+ 
     if(token) {
       const { data } = await axios.delete(`/api/admin/vinyls/${vinyl}`,{
         headers: {
@@ -37,9 +29,6 @@ export const deleteSingleVinyl = createAsyncThunk("deleteVinyl", async (vinyl) =
       });
       return data;
     }
-  } catch (err) {
-    console.log(`${err} from  delete Vinyl`);
-  }
 });
 
 const singleVinylSlice = createSlice({

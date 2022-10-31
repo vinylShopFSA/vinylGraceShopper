@@ -4,13 +4,8 @@ import axios from "axios";
 export const fetchSingleOrder = createAsyncThunk(
   "/orders/:userId/cart",
   async (userId) => {
-    try {
       const { data } = await axios.get(`/api/orders/${userId}/cart`);
-
       return data;
-    } catch (error) {
-      console.log("order does not exists");
-    }
   }
 );
 

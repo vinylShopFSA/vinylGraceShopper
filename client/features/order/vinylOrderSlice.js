@@ -4,12 +4,8 @@ import axios from "axios";
 export const fetchVinylOrders = createAsyncThunk(
   "/vinylOrder/:orderId",
   async (userId) => {
-    try {
       const { data } = await axios.get(`/api/vinylOrder/${userId}/cart`);
       return data;
-    } catch (err) {
-      console.log("no such vinyl order");
-    }
   }
 );
 
@@ -27,7 +23,6 @@ export const addVinylOrder = createAsyncThunk(
 export const incrementVinylOrder = createAsyncThunk(
   "incrementVinylOrder",
   async ({ userId, VinylId, quantity }) => {
-    try {
       quantity++;
       const { data } = await axios.put(
         `/api/vinylOrder/${userId}/cart/${VinylId}`,
@@ -36,16 +31,12 @@ export const incrementVinylOrder = createAsyncThunk(
         }
       );
       return data;
-    } catch (error) {
-      console.log(error);
-    }
   }
 );
 
 export const decrementVinylOrder = createAsyncThunk(
   "decrementVinylOrder",
   async ({ userId, VinylId, quantity }) => {
-    try {
       if (quantity > 0) {
         quantity--;
         const { data } = await axios.put(
@@ -58,23 +49,16 @@ export const decrementVinylOrder = createAsyncThunk(
       } else {
         removeVinylOrder({ userId, VinylId, quantity });
       }
-    } catch (error) {
-      console.log(error);
-    }
   }
 );
 
 export const removeVinylOrder = createAsyncThunk(
   "vinylOrder/:userId/cart/:VinylId/delete",
   async ({ userId, VinylId }) => {
-    try {
       const { data } = await axios.delete(
         `/api/vinylOrder/${userId}/cart/${VinylId}`
       );
       return data;
-    } catch (err) {
-      console.log(err);
-    }
   }
 );
 

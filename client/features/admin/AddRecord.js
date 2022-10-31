@@ -7,28 +7,30 @@ const AddRecord = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [state, setState] = useState({
-    year:1900,
-    price:"",
-    imageUrl: "",
-    quantity:0,
-    artist:"",
-    description:"",
-    genre:"",
-    label:"",
-    vinylName:"",
-});
+  const [year, setYear] = useState(1919)
+  const [price, setPrice] = useState(0.0)
+  const [imageUrl, setImageUrl] = useState("")
+  const [quantity, setQuantity] = useState(0)
+  const [artist, setArtist] = useState("")
+  const [description, setDescription] = useState("")
+  const [genre, setGenre] = useState("")
+  const [label, setLabel] = useState("")
+  const [vinylName, setVinylName] = useState("")
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setState((state) => ({ ...state, [name]: value }));
-  };
+  //add all the handlers 
+  // const handleChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setState((state) => ({ ...state, [name]: value }));
+  // };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(addNewVinyl(state));
+    dispatch(addNewVinyl({year, price,imageUrl,quantity,artist,description,genre,label,vinylName,}));
     navigate("/");
   };
+
+
 
   return (
     <div>
@@ -39,9 +41,9 @@ const AddRecord = () => {
           <div>
             <label htmlFor="title"></label>
             <input
-              onChange={handleChange}
+              onChange={(e) => setVinylName(e.target.value)}
+              value={vinylName}
               name="vinylName"
-              value={state.vinylName}
               placeholder="record name"
               required />
           </div>
@@ -86,9 +88,9 @@ const AddRecord = () => {
           <div>
             <label htmlFor="description"></label>
             <input
-              onChange={handleChange}
+              onChange={(e) => setDescription(e.target.value)}
               name="description"
-              value={state.description}
+              value={description}
               placeholder="Description"
               required
             />

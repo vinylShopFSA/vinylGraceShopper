@@ -15,12 +15,12 @@ const ViewUser = () => {
 
   return (
     <div>
-        <h1>Users</h1>
+      <h1>Users</h1>
         <div>
-            {users.map ((user) => {
-                return <UserDetails key={user.id} user={user}/>
+          {users.map ((user) => {
+            return <UserDetails key={user.id} user={user}/>
             })}
-    </div>
+       </div>
     </div>
   )
 }

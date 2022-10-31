@@ -6,8 +6,8 @@ const {
 
 router.post("/add",checkUser,checkAdmin, async (req, res, next) => {
     try {
-      const newVinyl = await Vinyl.create(req.body);
-      res.json(newVinyl);
+      const vinyl = await Vinyl.create(req.body);
+      res.json(vinyl);
     } catch (err) {
       next(err);
     }
@@ -15,9 +15,9 @@ router.post("/add",checkUser,checkAdmin, async (req, res, next) => {
 
 router.put("/:id",checkUser,checkAdmin, async (req, res, next) => {
   try {
-    const editVinyl = await Vinyl.findByPk(req.params.id);
-    await editVinyl.update(req.body);
-    res.json(editVinyl);
+    const vinyl = await Vinyl.findByPk(req.params.id);
+    await vinyl.update(req.body);
+    res.json(vinyl);
   } catch (err) {
     next(err);
   }
@@ -25,9 +25,9 @@ router.put("/:id",checkUser,checkAdmin, async (req, res, next) => {
 
 router.delete("/:id",checkUser, checkAdmin,async (req, res, next) => {
   try {
-    const deleteVinyl = await Vinyl.findByPk(req.params.id);
-    await deleteVinyl.destroy();
-    res.send(deleteVinyl);
+    const vinyl = await Vinyl.findByPk(req.params.id);
+    await vinyl.destroy();
+    res.send(vinyl);
   } catch (err) {
     next(err);
   }

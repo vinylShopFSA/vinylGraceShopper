@@ -27,8 +27,6 @@ const OrderComponent = () => {
     <div className="cart__left">
       <div>
         <h3>Shopping Cart</h3>
-        {
-          <>
             {cart && cart.status ? (
               <>
                 <p>Order Status: {cart.status}</p>
@@ -47,8 +45,6 @@ const OrderComponent = () => {
                 </div>
               </>
             ) : null}
-          </>
-        }
       </div>
     </div>
   );
