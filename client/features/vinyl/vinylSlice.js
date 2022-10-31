@@ -28,8 +28,8 @@ export const addNewVinyl = createAsyncThunk("addVinyl", async (vinyl) => {
 
 
 const vinylsSlice = createSlice({
-  name: "allVinyls",
-  initialState: [],
+  name: "vinyls",
+  initialState: {},
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchVinyls.fulfilled, (state, action) => {
