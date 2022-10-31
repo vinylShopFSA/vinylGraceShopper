@@ -1,6 +1,4 @@
-const {
-  models: { User },
-} = require("../db");
+const { models: { User },} = require("../db");
 
 const checkAdmin = (req, res, next) => {
     if (!req.user.isAdmin) {

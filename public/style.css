@@ -1,5 +1,5 @@
 body {
-  font-family: sans-serif;
+  font-family: "Barlow Condensed", sans-serif;
   text-align: center;
 }
 
@@ -27,3 +27,7 @@ form div {
 .flex-child {
   flex: 1;
 }
+
+/* body {
+  font-family: "Barlow Condensed";
+} */

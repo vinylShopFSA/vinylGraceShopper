@@ -7,7 +7,8 @@ const {
 router.get("/:userId/cart", async (req, res, next) => {
     try {
       //get unfulfilled cart
-      const cart = await Order.findOne({
+      //
+      const cart = await Order.findOrCreate({
         where: { userId: req.params.userId, status: "unfulfilled" },
       });
   

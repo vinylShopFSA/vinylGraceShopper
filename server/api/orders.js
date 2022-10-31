@@ -25,6 +25,7 @@ router.post("/:userId", async (req, res, next) => {
   try {
     const order = await Order.create({
       where: { userId: req.params.userId },
+      // userId:req.user.id
       userId: req.params.userId,
       status: "unfulfilled",
     });
