@@ -14,6 +14,7 @@ const SingleVinyl = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const {
+    // id,
     artist,
     vinylName,
     price,
@@ -24,12 +25,6 @@ const SingleVinyl = () => {
     description,
     quantity,
   } = useSelector((state) => state.singleVinyl);
-
-  const addVinylOrder = () => {
-    async () => {
-      await dispatch(addVinylOrder({ userId, VinylId: parseInt(id), quantity: 1 
-      }))
-  }
 
   useEffect(() => {
     dispatch(fetchSingleVinyl(id));
@@ -66,7 +61,12 @@ const SingleVinyl = () => {
       >
         <Button
           variant="outlined"
-          onClick={addVinylOrder}
+          onClick={async () => {
+            await dispatch(
+              addVinylOrder({ userId, VinylId: parseInt(id), quantity: 1 })
+            );
+            await dispatch(fetchVinylOrders(userId));
+          }}
         >
           <Typography
             sx={{
@@ -84,6 +84,5 @@ const SingleVinyl = () => {
     </Typography>
   );
 };
-}
 
 export default SingleVinyl;

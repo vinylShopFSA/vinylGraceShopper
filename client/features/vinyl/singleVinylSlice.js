@@ -29,6 +29,7 @@ export const deleteSingleVinyl = createAsyncThunk("deleteVinyl", async (vinyl) =
       });
       return data;
     }
+
 });
 
 const singleVinylSlice = createSlice({
