@@ -27,24 +27,24 @@ const OrderComponent = () => {
     <div className="cart__left">
       <div>
         <h3>Shopping Cart</h3>
-            {cart && cart.status ? (
-              <>
-                <p>Order Status: {cart.status}</p>
-                <div>
-                  <div>
-                    <VinylOrderComponent userId={userId} />
-                  </div>
-                  <button
-                    onClick={async () => {
-                      checkout(userId);
-                      navigate("/checkout");
-                    }}
-                  >
-                    Checkout
-                  </button>
-                </div>
-              </>
-            ) : null}
+        {cart && cart.status ? (
+          <>
+            <p>Order Status: {cart.status}</p>
+            <div>
+              <div>
+                <VinylOrderComponent userId={userId} />
+              </div>
+              <button
+                onClick={async () => {
+                  checkout(userId);
+                  navigate("/checkout");
+                }}
+              >
+                Checkout
+              </button>
+            </div>
+          </>
+        ) : null}
       </div>
     </div>
   );

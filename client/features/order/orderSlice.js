@@ -4,12 +4,10 @@ import axios from "axios";
 export const fetchSingleOrder = createAsyncThunk(
   "/orders/:userId/cart",
   async (userId) => {
-      const { data } = await axios.get(`/api/orders/${userId}/cart`);
-      return data;
+    const { data } = await axios.get(`/api/orders/${userId}/cart`);
+    return data;
   }
 );
-
-
 
 export const addOrder = createAsyncThunk(
   "orders/add",

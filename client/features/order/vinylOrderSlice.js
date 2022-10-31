@@ -4,8 +4,8 @@ import axios from "axios";
 export const fetchVinylOrders = createAsyncThunk(
   "/vinylOrder/:orderId",
   async (userId) => {
-      const { data } = await axios.get(`/api/vinylOrder/${userId}/cart`);
-      return data;
+    const { data } = await axios.get(`/api/vinylOrder/${userId}/cart`);
+    return data;
   }
 );
 
@@ -23,7 +23,22 @@ export const addVinylOrder = createAsyncThunk(
 export const incrementVinylOrder = createAsyncThunk(
   "incrementVinylOrder",
   async ({ userId, VinylId, quantity }) => {
-      quantity++;
+    quantity++;
+    const { data } = await axios.put(
+      `/api/vinylOrder/${userId}/cart/${VinylId}`,
+      {
+        quantity,
+      }
+    );
+    return data;
+  }
+);
+
+export const decrementVinylOrder = createAsyncThunk(
+  "decrementVinylOrder",
+  async ({ userId, VinylId, quantity }) => {
+    if (quantity > 0) {
+      quantity--;
       const { data } = await axios.put(
         `/api/vinylOrder/${userId}/cart/${VinylId}`,
         {
@@ -31,34 +46,19 @@ export const incrementVinylOrder = createAsyncThunk(
         }
       );
       return data;
-  }
-);
-
-export const decrementVinylOrder = createAsyncThunk(
-  "decrementVinylOrder",
-  async ({ userId, VinylId, quantity }) => {
-      if (quantity > 0) {
-        quantity--;
-        const { data } = await axios.put(
-          `/api/vinylOrder/${userId}/cart/${VinylId}`,
-          {
-            quantity,
-          }
-        );
-        return data;
-      } else {
-        removeVinylOrder({ userId, VinylId, quantity });
-      }
+    } else {
+      removeVinylOrder({ userId, VinylId, quantity });
+    }
   }
 );
 
 export const removeVinylOrder = createAsyncThunk(
   "vinylOrder/:userId/cart/:VinylId/delete",
   async ({ userId, VinylId }) => {
-      const { data } = await axios.delete(
-        `/api/vinylOrder/${userId}/cart/${VinylId}`
-      );
-      return data;
+    const { data } = await axios.delete(
+      `/api/vinylOrder/${userId}/cart/${VinylId}`
+    );
+    return data;
   }
 );
 
