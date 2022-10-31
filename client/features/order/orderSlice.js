@@ -14,29 +14,7 @@ export const fetchSingleOrder = createAsyncThunk(
   }
 );
 
-<<<<<<< HEAD
-export const fetchUserOrderHistory = createAsyncThunk(
-  "/orders/users/:userId",
-  async (userId) => {
-    try {
-      const { data } = await axios.get(`/api/orders/users/${userId}/`);
-      console.log(data);
-      return data;
-    } catch (e) {
-      console.log("oops");
-    }
-=======
-// export const fetchUserOrderHistory = createAsyncThunk(
-//   "/orders/user/:userId",
-//   async (userId) => {
-//     try {
-//       const { data } = await axios.get(`/api/orders/user/${userId}/`);
-//       return data;
-//     } catch (error) {
-//       console.log("user has no orders");
-//     }
-//   }
-// );
+
 
 export const addOrder = createAsyncThunk(
   "orders/add",
@@ -55,7 +33,6 @@ export const checkout = createAsyncThunk(
   async ({ userId }) => {
     const { data } = await axios.put(`/api/orders/${userId}/checkout`);
     return data;
->>>>>>> 7adb85ff2c272cee892836ea2e1c0d2eb3828a29
   }
 );
 
@@ -64,7 +41,6 @@ export const orderSlice = createSlice({
   initialState: {
     allOrders: [],
     singleOrder: {},
-    // userOrderHistory: [],
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -72,9 +48,6 @@ export const orderSlice = createSlice({
       .addCase(fetchSingleOrder.fulfilled, (state, action) => {
         state.singleOrder = action.payload;
       })
-      // .addCase(fetchUserOrderHistory.fulfilled, (state, action) => {
-      //   state.userOrderHistory = action.payload;
-      // })
       .addCase(addOrder.fulfilled, (state, action) => {
         state.allOrders.push(action.payload);
       })
@@ -86,6 +59,5 @@ export const orderSlice = createSlice({
 
 export const selectSingleOrder = (state) => state.singleOrder;
 export const selectAllOrders = (state) => state.allOrders;
-// export const selectUserOrderHistory = (state) => state.userOrderHistory;
 
 export default orderSlice.reducer;
