@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../features/navbar/Navbar";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+// require("typeface-barlow-condensed");
 
 import AppRoutes from "./AppRoutes";
 
@@ -34,6 +35,6 @@ const App = () => {
     </div>
   );
 };
-// onAdd={onAdd} onRemove={onRemove} 
+// onAdd={onAdd} onRemove={onRemove}
 
 export default App;

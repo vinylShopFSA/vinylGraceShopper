@@ -1,5 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-  font-family: "Barlow Condensed", sans-serif;
+  font-family: sans-serif;
   text-align: center;
 }
 
@@ -27,7 +31,3 @@ form div {
 .flex-child {
   flex: 1;
 }
-
-/* body {
-  font-family: "Barlow Condensed";
-} */

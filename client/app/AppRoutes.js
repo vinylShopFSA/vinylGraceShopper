@@ -62,9 +62,9 @@ const AppRoutes = (props) => {
             path="/*"
             element={
               <>
-                <div>
+                {/* <div>
                   <AuthForm name="login" displayName="Login" />
-                </div>
+                </div> */}
                 <div>
                   <AllVinyls onAdd={onAdd} onRemove={onRemove} />
                 </div>
