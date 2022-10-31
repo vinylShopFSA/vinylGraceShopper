@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// o: you don't need try catches in async thunks
 export const fetchSingleOrder = createAsyncThunk(
   "/orders/:userId/cart",
   async (userId) => {

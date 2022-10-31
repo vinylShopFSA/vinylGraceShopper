@@ -8,6 +8,7 @@ const {
 //this the rought to get the orders for specific user
 router.get("/:userId/cart", async (req, res, next) => {
   try {
+    // o: you can get the userId from req.user
     const userOrder = await Order.findOne({
       where: {
         userId: req.params.userId,
@@ -23,6 +24,7 @@ router.get("/:userId/cart", async (req, res, next) => {
 
 router.post("/:userId", async (req, res, next) => {
   try {
+    // o: you can get the userId from req.user
     const order = await Order.create({
       where: { userId: req.params.userId },
       userId: req.params.userId,
@@ -36,6 +38,7 @@ router.post("/:userId", async (req, res, next) => {
 
 router.put("/:userId/checkout", async (req, res, next) => {
   try {
+    // o: you can get the userId from req.user
     const order = await Order.findOne({
       where: {
         userId: req.params.userId,

@@ -18,8 +18,11 @@ router.get("/", checkUser,checkAdmin, async (req, res, next) => {
     }
   });
   
+  // o: this should be protected by admin... logged in users should only be able
+  //  to access their own info
   router.get("/:id", checkUser,async (req, res, next) => {
     try {
+      // o: why not just name it "user",  also what about if user is not found
       const findUser = await User.findByPk(req.params.id);
       res.json(findUser);
     } catch (err) {
@@ -29,6 +32,7 @@ router.get("/", checkUser,checkAdmin, async (req, res, next) => {
   
   router.put("/:id", checkUser,checkAdmin,async (req, res, next) => {
     try {
+      // o: why not just name it "user",  also what about if user is not found
       const editUser = await User.findByPk(req.params.id);
       await editUser.update(req.body);
       res.json(editUser);
@@ -39,6 +43,7 @@ router.get("/", checkUser,checkAdmin, async (req, res, next) => {
   
   router.delete("/:id", checkUser,checkAdmin,async (req, res, next) => {
     try {
+      // o: why not just name it "user",  also what about if user is not found
       const deleteUser = await User.findByPk(req.params.id);
       await deleteUser.destroy();
       res.send(deleteUser);

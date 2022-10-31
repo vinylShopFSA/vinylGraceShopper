@@ -24,6 +24,8 @@ router.get("/:vinylId", async (req, res, next) => {
   }
 });
 
+// o: remove if not used
+
 // POST /api/vinyl
 // router.post("/", async (req, res, next) => {
 //   try {

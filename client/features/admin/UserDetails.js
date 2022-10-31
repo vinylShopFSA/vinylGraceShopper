@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 const UserDetails = (props) => {
   const user = props.user;
 
-
+  // o: fix this indentation 
   return (
 
 <>

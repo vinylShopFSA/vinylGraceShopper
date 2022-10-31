@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 5;
 
+// o: please remove allowNull: false lines
+
 const User = db.define('user', {
   username: {
     type: Sequelize.STRING,

@@ -15,6 +15,7 @@ router.post("/login", async (req, res, next) => {
 
 router.post("/signup", async (req, res, next) => {
   try {
+    // o: good work!
     const {username, password} = req.body
     const user = await User.create({username, password});
     res.send({ token: await user.generateToken() });

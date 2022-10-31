@@ -17,6 +17,7 @@ const App = () => {
     dispatch(me());
   }, []);
 
+  // o: let's talk about this cart implementation during our SM
   let cart = useSelector((state) => {
     return state.vinylOrder;
   });

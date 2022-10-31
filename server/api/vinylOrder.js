@@ -7,12 +7,16 @@ const {
 router.get("/:userId/cart", async (req, res, next) => {
     try {
       //get unfulfilled cart
+      // o: you can get the userId from req.user
+
+      // o: if you don't find the cart/order... you should create one
       const cart = await Order.findOne({
         where: { userId: req.params.userId, status: "unfulfilled" },
       });
   
       //get the vinylOrders for the cart
       if (cart) {
+        // o: you should be able to just run cart.getOrders() because of the association
         const vinylOrders = await VinylOrder.findAll({
           where: { orderId: cart.id },
           include: [Vinyl],
@@ -27,8 +31,11 @@ router.get("/:userId/cart", async (req, res, next) => {
   });
   
   //GET api/vinylOrder/:userId/cart/:id
+
+  // o: is this being used?
   router.get("/:userId/cart/:id", async (req, res, next) => {
     try {
+      // o: you can get the userId from req.user
       const cart = await Order.findOne({
         where: { userId: req.params.userId, status: "unfulfilled" },
       });
@@ -51,10 +58,15 @@ router.get("/:userId/cart", async (req, res, next) => {
     }
   });
   
+
+  // o: if you always create the cart, the situation where you need to create one
+  //  via a post will never occur (more in our SM)
+
   //add vinylOrder to cart
   //POST api/vinylOrder/:userId/cart
   router.post("/:userId/cart", async (req, res, next) => {
     try {
+      // o: you can get the userId from req.user
       const cart = await Order.findOne({
         where: { userId: req.params.userId, status: "unfulfilled" },
       });
@@ -81,6 +93,7 @@ router.get("/:userId/cart", async (req, res, next) => {
   
   router.put("/:userId/cart/:VinylId", async (req, res, next) => {
     try {
+      // o: you can get the userId from req.user
       const cart = await Order.findOne({
         where: { userId: req.params.userId, status: "unfulfilled" },
       });
@@ -99,8 +112,10 @@ router.get("/:userId/cart", async (req, res, next) => {
     }
   });
   
+  // o: is there ever a case where you would need to delete a cart?
   router.delete("/:userId/cart/:VinylId", async (req, res, next) => {
     try {
+      // o: you can get the userId from req.user
       const cart = await Order.findOne({
         where: { userId: req.params.userId, status: "unfulfilled" },
       });

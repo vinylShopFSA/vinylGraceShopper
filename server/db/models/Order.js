@@ -4,6 +4,7 @@ const db = require("../db");
 const Order = db.define("order", {
   purchaseDate: {
     type: Sequelize.DATE,
+    // o: please remove this line
     // allowNull: false,
   },
   status: {

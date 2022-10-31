@@ -22,6 +22,7 @@ import { addVinylOrder, fetchVinylOrders } from "../order/vinylOrderSlice";
       <div>
         <h1>All Albums</h1>
         <ul>
+          {/* o: vinyls?.map already does this check */}
           {vinyls && vinyls.length
             ? vinyls.map(({ id, artist, vinylName, price, imageUrl }) => {
                 return (

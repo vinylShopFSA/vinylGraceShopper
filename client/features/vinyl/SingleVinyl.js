@@ -11,6 +11,8 @@ const SingleVinyl = () => {
 
   const { id } = useParams();
   const dispatch = useDispatch();
+
+  // o: remove id if not being used
   const {
     // id,
     artist,
@@ -44,6 +46,8 @@ const SingleVinyl = () => {
       <p>Items in Stock :{quantity}</p>
       <p>
         <button
+          // o: this is bad practice and hard to read... please extract function outside of onClick
+          //  handler
           onClick={async () => {
             await dispatch(
               addVinylOrder({ userId, VinylId: parseInt(id), quantity: 1 })

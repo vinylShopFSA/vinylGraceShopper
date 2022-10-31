@@ -25,12 +25,15 @@ function VinylOrderComponent(props) {
     <>
       {vinylOrder?.map(({ Vinyl, quantity }) => (
         <div>
+          {/* o: there will be an instance where Vinyl is empty */}
           {Vinyl ? (
             <div key={Vinyl.id}>
               <p className="price">Vinyl:{Vinyl.vinylName}</p>
               <img className="cartimage" src={Vinyl.imageUrl} alt="item" />
               <p className="price">Price: ${Vinyl.price}</p>{" "}
               <button
+                // o: this is bad practice and hard to read... please extract function outside of onClick
+                //  handler
                 onClick={async () => {
                   await dispatch(
                     decrementVinylOrder({ userId, VinylId: Vinyl.id, quantity })
@@ -42,6 +45,8 @@ function VinylOrderComponent(props) {
               </button>
               <p>{quantity}</p>
               <button
+                // o: this is bad practice and hard to read... please extract function outside of onClick
+                //  handler
                 onClick={async () => {
                   await dispatch(
                     incrementVinylOrder({ userId, VinylId: Vinyl.id, quantity })
@@ -52,6 +57,8 @@ function VinylOrderComponent(props) {
                 +
               </button>
               <button
+                // o: this is bad practice and hard to read... please extract function outside of onClick
+                //  handler
                 onClick={async () => {
                   await dispatch(
                     removeVinylOrder({ userId, VinylId: Vinyl.id })

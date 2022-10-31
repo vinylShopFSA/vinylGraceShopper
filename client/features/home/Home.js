@@ -21,6 +21,7 @@ const Home = () => {
     <div>
       <h3>Welcome{username ?" " + username : ", Stranger"}</h3>
       <h3>  {firstName} here's your shopping experience </h3>
+      {/* o: remove if not used */}
       {/* <h3>First Name: {firstName}</h3>
       <h3>Last Name: {lastName}</h3> */}
       <AllVinyls  />

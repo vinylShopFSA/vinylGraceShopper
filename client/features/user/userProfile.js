@@ -23,6 +23,7 @@ const {id,email, firstName,createdAt, username} = user
       {!id ? (
         <div>Loading User information ...</div>
       ) : (
+        // o: you don't need a fragment here
 <>
     <div>
     <div> Hi, {username}</div>

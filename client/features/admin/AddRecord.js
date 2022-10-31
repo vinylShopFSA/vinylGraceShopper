@@ -7,6 +7,9 @@ const AddRecord = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // o: state is a bad name for this variable and you should NOT be using an object
+  //  to store state, these should be tracked individually... this is not ideal when using 
+  //  React useState
   const [state, setState] = useState({
     year:1900,
     price:"",

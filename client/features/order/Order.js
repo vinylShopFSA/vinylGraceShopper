@@ -28,8 +28,10 @@ const OrderComponent = () => {
       <div>
         <h3>Shopping Cart</h3>
         {
+          // o: you don't need a fragment here
           <>
             {cart && cart.status ? (
+              // o: you don't need a fragment here
               <>
                 <p>Order Status: {cart.status}</p>
                 <div>
