@@ -7,9 +7,9 @@ const Order = db.define("order", {
     // allowNull: false,
   },
   status: {
-    type: Sequelize.ENUM("un-fufilled", "fufilled"),
+    type: Sequelize.ENUM("unfulfilled", "fulfilled"),
     allowNull: false,
-    defaultValue: "un-fufilled",
+    defaultValue: "unfulfilled",
   },
   total: {
     type: Sequelize.FLOAT,

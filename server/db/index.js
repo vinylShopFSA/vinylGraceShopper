@@ -10,8 +10,8 @@ const VinylOrder = require("./models/VinylOrder");
 Order.belongsTo(User);
 User.hasMany(Order);
 
-Vinyl.belongsToMany(Order, { through: VinylOrder });
-Order.belongsToMany(Vinyl, { through: VinylOrder });
+Vinyl.belongsToMany(Order, { through: VinylOrder, unique: false });
+Order.belongsToMany(Vinyl, { through: VinylOrder, unique: false });
 
 Order.hasMany(VinylOrder);
 VinylOrder.belongsTo(Order);

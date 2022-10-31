@@ -6,15 +6,17 @@ import Home from "../features/home/Home";
 import AllVinyls from "../features/vinyl/AllVinyl";
 import SingleVinyl from "../features/vinyl/SingleVinyl";
 import { me } from "./store";
-import CartComponent from "../features/cart/Cart";
 import OrderComponent from "../features/order/Order";
+import Checkout from "../features/order/Checkout";
 
 /**
  * COMPONENT
  */
 
-const AppRoutes = (props) => {
-  const { onAdd, onRemove } = props;
+const AppRoutes = () => {
+  const user = useSelector((state) => state.auth.me);
+  const userId = user.id;
+
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
 
@@ -26,24 +28,41 @@ const AppRoutes = (props) => {
     <div>
       {isLoggedIn ? (
         <Routes>
-          <Route path="/*" element={<Home />} />
-          <Route to="/home" element={<Home />} />
+          <Route path="/*" element={<Home userId={userId} />} />
+          <Route to="/home" element={<Home userId={userId} />} />
           <Route
             path="/allVinyls"
-            element={<AllVinyls name="allVinyls" displayName="All Vinyls" />}
+            element={
+              <AllVinyls
+                name="allVinyls"
+                displayName="All Vinyls"
+                userId={userId}
+              />
+            }
           />
-        </Routes>
-      ) : (
-        <Routes>
           <Route
             path="/singleVinyl/:id"
             element={
               <SingleVinyl
                 name="singleVinyl"
                 displayName="singleVinyl"
-                onAdd={onAdd}
-                onRemove={onRemove}
+                userId={userId}
               />
+            }
+          />
+          <Route />
+          <Route
+            path="/currentOrder"
+            element={<OrderComponent userId={userId} />}
+          />
+          <Route path="/checkout" element={<Checkout />} />
+        </Routes>
+      ) : (
+        <Routes>
+          <Route
+            path="/singleVinyl/:id"
+            element={
+              <SingleVinyl name="singleVinyl" displayName="singleVinyl" />
             }
           />
           <Route />
@@ -67,12 +86,11 @@ const AppRoutes = (props) => {
                   <AuthForm name="login" displayName="Login" />
                 </div>
                 <div>
-                  <AllVinyls onAdd={onAdd} onRemove={onRemove} />
+                  <AllVinyls />
                 </div>
               </>
             }
           />
-          <Route path="/cart" element={<CartComponent />} />
           <Route path="/currentOrder" element={<OrderComponent />} />
         </Routes>
       )}

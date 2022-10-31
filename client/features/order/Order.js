@@ -2,25 +2,27 @@ import React, { useEffect } from "react";
 // import CartItem from "./CartItem";
 
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSingleOrder } from "./orderSlice";
+import { useNavigate } from "react-router-dom";
+import { checkout, fetchSingleOrder } from "./orderSlice";
 import VinylOrderComponent from "./VinylOrder";
+import { fetchVinylOrders } from "./vinylOrderSlice";
 
 const OrderComponent = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  //place holder dummy data
-  const currentCartId = 1;
+  const user = useSelector((state) => state.auth.me);
+  const userId = user.id;
 
-  const cart = useSelector((state) => {
-    console.log(state);
-    return state.order.singleOrder;
-  });
+  const cart = useSelector((state) => state.order.singleOrder);
 
   useEffect(() => {
-    dispatch(fetchSingleOrder(currentCartId));
+    if (userId) {
+      dispatch(fetchSingleOrder(userId));
+      dispatch(fetchVinylOrders(userId));
+    }
   }, []);
 
-  console.log("cart", cart);
   return (
     <div className="cart__left">
       <div>
@@ -31,16 +33,17 @@ const OrderComponent = () => {
               <>
                 <p>Order Status: {cart.status}</p>
                 <div>
-                  {/* <ul>
-                    {cart.vinylOrders?.map((item) => (
-                      <li key={item.VinylId}>
-                        <p>vinylid: {item.VinylId}</p>
-                      </li>
-                    ))}
-                  </ul> */}
                   <div>
-                    <VinylOrderComponent cartId={cart.id} />
+                    <VinylOrderComponent userId={userId} />
                   </div>
+                  <button
+                    onClick={async () => {
+                      checkout(userId);
+                      navigate("/checkout");
+                    }}
+                  >
+                    Checkout
+                  </button>
                 </div>
               </>
             ) : null}

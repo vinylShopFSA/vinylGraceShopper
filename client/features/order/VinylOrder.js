@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchVinylOrders } from "./vinylOrderSlice";
+import {
+  decrementVinylOrder,
+  fetchVinylOrders,
+  incrementVinylOrder,
+  removeVinylOrder,
+} from "./vinylOrderSlice";
 
 function VinylOrderComponent(props) {
-  const { cartId } = props;
+  const { userId } = props;
   const dispatch = useDispatch();
 
   const vinylOrder = useSelector((state) => {
@@ -11,30 +16,55 @@ function VinylOrderComponent(props) {
   });
 
   useEffect(() => {
-    dispatch(fetchVinylOrders(cartId));
+    if (userId) {
+      dispatch(fetchVinylOrders(userId));
+    }
   }, []);
 
-  console.log("VINYLORDER", vinylOrder);
   return (
     <>
       {vinylOrder?.map(({ Vinyl, quantity }) => (
         <div>
-          <p className="price">Vinyl:{Vinyl.vinylName}</p>
-          <img className="cartimage" src={Vinyl.imageUrl} alt="item" />
-          <p className="price">Price: ${Vinyl.price}</p>
-          <p>{quantity}</p>
+          {Vinyl ? (
+            <div key={Vinyl.id}>
+              <p className="price">Vinyl:{Vinyl.vinylName}</p>
+              <img className="cartimage" src={Vinyl.imageUrl} alt="item" />
+              <p className="price">Price: ${Vinyl.price}</p>{" "}
+              <button
+                onClick={async () => {
+                  await dispatch(
+                    decrementVinylOrder({ userId, VinylId: Vinyl.id, quantity })
+                  );
+                  await dispatch(fetchVinylOrders(userId));
+                }}
+              >
+                -
+              </button>
+              <p>{quantity}</p>
+              <button
+                onClick={async () => {
+                  await dispatch(
+                    incrementVinylOrder({ userId, VinylId: Vinyl.id, quantity })
+                  );
+                  await dispatch(fetchVinylOrders(userId));
+                }}
+              >
+                +
+              </button>
+              <button
+                onClick={async () => {
+                  await dispatch(
+                    removeVinylOrder({ userId, VinylId: Vinyl.id })
+                  );
+                  await dispatch(fetchVinylOrders(userId));
+                }}
+              >
+                Remove from cart
+              </button>
+            </div>
+          ) : null}
         </div>
       ))}
-      {/* <div className="cartItem">
-        <img className="cartItem__image" src={imageUrl} alt="item" />
-        <div className="cartItem__info">
-          <p className="cartItem__title">{vinylName}</p>
-          <p className="cartItem__price">
-            <small>$</small>
-            <strong>{price}</strong>
-          </p>
-        </div>
-      </div> */}
     </>
   );
 }

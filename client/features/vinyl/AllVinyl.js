@@ -3,16 +3,16 @@ import { useSelector } from "react-redux";
 import { fetchVinyls } from "./vinylSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToCart } from "../cart/cartSlice";
+import { addVinylOrder, fetchVinylOrders } from "../order/vinylOrderSlice";
 /**
  * COMPONENT
  */
-const AllVinyls = (props) => {
-  const { onAdd, onRemove } = props;
+const AllVinyls = () => {
+  const user = useSelector((state) => state.auth.me);
+  const userId = user.id;
+
   const dispatch = useDispatch();
-  const vinyls = useSelector((state) => {
-    return state.vinyl;
-  });
+  const vinyls = useSelector((state) => state.vinyl);
 
   useEffect(() => {
     dispatch(fetchVinyls());
@@ -33,11 +33,16 @@ const AllVinyls = (props) => {
                       <p>${price}</p>
                     </Link>
                     <button
-                      onClick={() =>
-                        dispatch(
-                          addToCart({ id, artist, vinylName, price, imageUrl })
-                        )
-                      }
+                      onClick={async () => {
+                        await dispatch(
+                          addVinylOrder({
+                            userId,
+                            VinylId: id,
+                            quantity: 1,
+                          })
+                        );
+                        await dispatch(fetchVinylOrders(userId));
+                      }}
                     >
                       Add to Cart
                     </button>

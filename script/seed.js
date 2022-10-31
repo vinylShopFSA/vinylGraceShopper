@@ -186,39 +186,39 @@ async function seed() {
   const orders = await Promise.all([
     Order.create({
       purchaseDate: 10 - 27 - 2000,
-      status: "fufilled",
+      status: "fulfilled",
     }),
     Order.create({
       purchaseDate: 10 - 27 - 2000,
-      status: "fufilled",
+      status: "fulfilled",
     }),
     Order.create({
       purchaseDate: 10 - 27 - 2000,
-      status: "un-fufilled",
+      status: "unfulfilled",
     }),
     Order.create({
       purchaseDate: 10 - 27 - 2000,
-      status: "fufilled",
+      status: "fulfilled",
     }),
     Order.create({
       purchaseDate: 12 - 27 - 2000,
-      status: "un-fufilled",
+      status: "unfulfilled",
     }),
     Order.create({
       purchaseDate: 11 - 27 - 2000,
-      status: "fufilled",
+      status: "fulfilled",
     }),
     Order.create({
       purchaseDate: 10 - 29 - 2000,
-      status: "un-fufilled",
+      status: "unfulfilled",
     }),
     Order.create({
       purchaseDate: 10 - 28 - 2000,
-      status: "un-fufilled",
+      status: "unfulfilled",
     }),
     Order.create({
       purchaseDate: 10 - 27 - 2000,
-      status: "un-fufilled",
+      status: "unfulfilled",
     }),
   ]);
   // Creating Vinyl Orders
