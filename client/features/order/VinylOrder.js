@@ -9,7 +9,7 @@ import {
 import { Button, Typography } from "@mui/material";
 
 function VinylOrderComponent(props) {
-  const { userId } = props;
+  const { } = props;
   const dispatch = useDispatch();
 
   const vinylOrder = useSelector((state) => {
@@ -18,7 +18,7 @@ function VinylOrderComponent(props) {
 
   useEffect(() => {
     if (userId) {
-      dispatch(fetchVinylOrders(userId));
+      dispatch(fetchVinylOrders());
     }
   }, []);
 
@@ -50,7 +50,7 @@ function VinylOrderComponent(props) {
                         quantity,
                       })
                     );
-                    await dispatch(fetchVinylOrders(userId));
+                    await dispatch(fetchVinylOrders());
                   }}
                 >
                   -
@@ -65,7 +65,7 @@ function VinylOrderComponent(props) {
                         quantity,
                       })
                     );
-                    dispatch(fetchVinylOrders(userId));
+                    dispatch(fetchVinylOrders());
                   }}
                 >
                   +
@@ -75,7 +75,7 @@ function VinylOrderComponent(props) {
                     await dispatch(
                       removeVinylOrder({ userId, VinylId: Vinyl.id })
                     );
-                    await dispatch(fetchVinylOrders(userId));
+                    await dispatch(fetchVinylOrders());
                   }}
                 >
                   Remove from cart

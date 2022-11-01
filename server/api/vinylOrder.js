@@ -3,12 +3,14 @@ const { request } = require("express");
 const {
   models: { Order, Vinyl, User, VinylOrder },
 } = require("../db");
+const { checkUser } = require("./checkers");
 
-router.get("/:userId/cart", async (req, res, next) => {
+router.get("/cart", checkUser, async (req, res, next) => {
   try {
     //get unfulfilled cart
+
     const cart = await Order.findOne({
-      where: { userId: req.params.userId, status: "unfulfilled" },
+      where: { userId: req.user.id, status: "unfulfilled" },
     });
 
     //get the vinylOrders for the cart
@@ -27,10 +29,10 @@ router.get("/:userId/cart", async (req, res, next) => {
 });
 
 //GET api/vinylOrder/:userId/cart/:id
-router.get("/:userId/cart/:id", async (req, res, next) => {
+router.get("/cart/:id", checkUser, async (req, res, next) => {
   try {
     const cart = await Order.findOne({
-      where: { userId: req.params.userId, status: "unfulfilled" },
+      where: { userId: req.user.id, status: "unfulfilled" },
     });
 
     //get single vinylOrder of unfufilled cart
@@ -53,10 +55,10 @@ router.get("/:userId/cart/:id", async (req, res, next) => {
 
 //add vinylOrder to cart
 //POST api/vinylOrder/:userId/cart
-router.post("/:userId/cart", async (req, res, next) => {
+router.post("/cart", checkUser, async (req, res, next) => {
   try {
     const cart = await Order.findOne({
-      where: { userId: req.params.userId, status: "unfulfilled" },
+      where: { userId: req.user.id, status: "unfulfilled" },
     });
 
     if (cart) {
@@ -79,10 +81,10 @@ router.post("/:userId/cart", async (req, res, next) => {
   }
 });
 
-router.put("/:userId/cart/:VinylId", async (req, res, next) => {
+router.put("/cart/:VinylId", checkUser, async (req, res, next) => {
   try {
     const cart = await Order.findOne({
-      where: { userId: req.params.userId, status: "unfulfilled" },
+      where: { userId: req.user.id, status: "unfulfilled" },
     });
     if (cart) {
       const vinylOrder = await VinylOrder.findOne({
@@ -99,10 +101,10 @@ router.put("/:userId/cart/:VinylId", async (req, res, next) => {
   }
 });
 
-router.delete("/:userId/cart/:VinylId", async (req, res, next) => {
+router.delete("/cart/:VinylId", checkUser, async (req, res, next) => {
   try {
     const cart = await Order.findOne({
-      where: { userId: req.params.userId, status: "unfulfilled" },
+      where: { userId: req.user.id, status: "unfulfilled" },
     });
 
     const vinylOrder = await VinylOrder.findOne({

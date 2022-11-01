@@ -1,33 +1,46 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+const TOKEN = "token";
 
-export const fetchSingleOrder = createAsyncThunk(
-  "/orders/:userId/cart",
-  async (userId) => {
-    const { data } = await axios.get(`/api/orders/${userId}/cart`);
-    return data;
-  }
-);
+export const fetchSingleOrder = createAsyncThunk("/orders/cart", async () => {
+  const token = window.localStorage.getItem(TOKEN);
+  const { data } = await axios.get(`/api/orders/cart`, {
+    headers: {
+      authorization: token,
+    },
+  });
+  return data;
+});
 
 export const addOrder = createAsyncThunk(
   "orders/add",
-  async ({ userId, status, total }) => {
-    const { data } = await axios.post("/api/orders", {
-      userId,
-      status,
-      total,
-    });
+  async ({ status, total }) => {
+    const token = window.localStorage.getItem(TOKEN);
+    const { data } = await axios.post(
+      "/api/orders/cart",
+      {
+        status,
+        total,
+      },
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
     return data;
   }
 );
 
-export const checkout = createAsyncThunk(
-  "orders/:userId/checkout",
-  async ({ userId }) => {
-    const { data } = await axios.put(`/api/orders/${userId}/checkout`);
-    return data;
-  }
-);
+export const checkout = createAsyncThunk("orders/checkout", async () => {
+  const token = window.localStorage.getItem(TOKEN);
+  const { data } = await axios.put(`/api/orders/checkout`, {
+    headers: {
+      authorization: token,
+    },
+  });
+  return data;
+});
 
 export const orderSlice = createSlice({
   name: "order",
