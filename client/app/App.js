@@ -39,8 +39,11 @@ const App = () => {
     cart.forEach((item) => {
       total += item.quantity;
     });
+  
     return total;
+
   };
+
 
   return (
     <div>

@@ -11,7 +11,7 @@ const Order = db.define("order", {
     defaultValue: "unfulfilled",
   },
   total: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.INTEGER,
     defaultValue: 0,
   },
 });

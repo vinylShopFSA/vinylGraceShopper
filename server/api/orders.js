@@ -15,7 +15,7 @@ router.get("/cart", checkUser, async (req, res, next) => {
         userId: req.user.id,
         status: "unfulfilled",
       },
-      include: [VinylOrder],
+      include: [VinylOrder, Vinyl],
     });
     if (userOrder) res.json(userOrder);
   } catch (err) {
