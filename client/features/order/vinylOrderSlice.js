@@ -1,33 +1,56 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+const TOKEN = "token";
 
 export const fetchVinylOrders = createAsyncThunk(
-  "/vinylOrder/:orderId",
-  async (userId) => {
-    const { data } = await axios.get(`/api/vinylOrder/${userId}/cart`);
-    return data;
-  }
-);
-
-export const addVinylOrder = createAsyncThunk(
-  "/vinylOrder/:userId/add",
-  async ({ userId, quantity, VinylId }) => {
-    const { data } = await axios.post(`/api/vinylOrder/${userId}/cart`, {
-      VinylId,
-      quantity,
+  "/vinylOrder/cart",
+  async () => {
+    const token = window.localStorage.getItem(TOKEN);
+    const { data } = await axios.get(`/api/vinylOrder/cart`, {
+      headers: {
+        authorization: token,
+      },
     });
     return data;
   }
 );
 
+export const addVinylOrder = createAsyncThunk(
+  "/vinylOrder/add",
+  async ({ quantity, VinylId }) => {
+    const token = window.localStorage.getItem(TOKEN);
+    if (token) {
+      const { data } = await axios.post(
+        `/api/vinylOrder/cart`,
+        {
+          VinylId,
+          quantity,
+        },
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+      return data;
+    }
+  }
+);
+
 export const incrementVinylOrder = createAsyncThunk(
   "incrementVinylOrder",
-  async ({ userId, VinylId, quantity }) => {
+  async ({ VinylId, quantity }) => {
+    const token = window.localStorage.getItem(TOKEN);
     quantity++;
     const { data } = await axios.put(
-      `/api/vinylOrder/${userId}/cart/${VinylId}`,
+      `/api/vinylOrder/cart/${VinylId}`,
       {
         quantity,
+      },
+      {
+        headers: {
+          authorization: token,
+        },
       }
     );
     return data;
@@ -37,12 +60,18 @@ export const incrementVinylOrder = createAsyncThunk(
 export const decrementVinylOrder = createAsyncThunk(
   "decrementVinylOrder",
   async ({ userId, VinylId, quantity }) => {
+    const token = window.localStorage.getItem(TOKEN);
     if (quantity > 0) {
       quantity--;
       const { data } = await axios.put(
-        `/api/vinylOrder/${userId}/cart/${VinylId}`,
+        `/api/vinylOrder/cart/${VinylId}`,
         {
           quantity,
+        },
+        {
+          headers: {
+            authorization: token,
+          },
         }
       );
       return data;
@@ -53,11 +82,14 @@ export const decrementVinylOrder = createAsyncThunk(
 );
 
 export const removeVinylOrder = createAsyncThunk(
-  "vinylOrder/:userId/cart/:VinylId/delete",
-  async ({ userId, VinylId }) => {
-    const { data } = await axios.delete(
-      `/api/vinylOrder/${userId}/cart/${VinylId}`
-    );
+  "vinylOrder/cart/:VinylId/delete",
+  async ({ VinylId }) => {
+    const token = window.localStorage.getItem(TOKEN);
+    const { data } = await axios.delete(`/api/vinylOrder/cart/${VinylId}`, {
+      headers: {
+        authorization: token,
+      },
+    });
     return data;
   }
 );
