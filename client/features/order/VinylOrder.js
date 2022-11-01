@@ -39,7 +39,13 @@ function VinylOrderComponent(props) {
                 >
                   {Vinyl.vinylName}
                 </Typography>
-                <img className="cartimage" src={Vinyl.imageUrl} alt="item" />
+                <img
+                  className="cartimage"
+                  src={Vinyl.imageUrl}
+                  alt="item"
+                  width="400px"
+                  height="400px"
+                />
                 <p className="price">Price: ${Vinyl.price}</p>{" "}
                 <Button
                   onClick={async () => {
