@@ -5,7 +5,6 @@ const Vinyl = db.define("Vinyl", {
   vinylName: {
     type: Sequelize.STRING,
     allowNull: false,
-
   },
   imageUrl: {
     type: Sequelize.STRING,

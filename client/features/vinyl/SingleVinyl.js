@@ -14,7 +14,6 @@ const SingleVinyl = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const {
-    // id,
     artist,
     vinylName,
     price,
