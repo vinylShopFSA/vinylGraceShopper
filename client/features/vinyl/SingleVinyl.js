@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import { addVinylOrder, fetchVinylOrders } from "../order/vinylOrderSlice";
 import { Button, Stack, Item, Typography, ListItemText } from "@mui/material/";
 
-
 const SingleVinyl = () => {
   const user = useSelector((state) => state.auth.me);
   const userId = user.id;
@@ -30,7 +29,7 @@ const SingleVinyl = () => {
   }, []);
 
   return (
-<Typography fontFamily="Barlow Condensed">
+    <Typography fontFamily="Barlow Condensed">
       <Typography
         sx={{
           fontStyle: "oblique",
@@ -42,7 +41,7 @@ const SingleVinyl = () => {
         <h1>{vinylName}</h1>
         <h2>{artist}</h2>
       </Typography>
-      <img src={imageUrl}></img>
+      <img src={imageUrl} width="500px" height="500px"></img>
       <h2>About this album:</h2>
       <h3>Genre: {genre}</h3>
       <h3>Release Year: {year}</h3>

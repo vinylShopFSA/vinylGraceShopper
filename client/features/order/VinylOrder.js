@@ -6,6 +6,7 @@ import {
   incrementVinylOrder,
   removeVinylOrder,
 } from "./vinylOrderSlice";
+import { Button, Typography } from "@mui/material";
 
 function VinylOrderComponent(props) {
   const { userId } = props;
@@ -23,48 +24,67 @@ function VinylOrderComponent(props) {
 
   return (
     <>
-      {vinylOrder?.map(({ Vinyl, quantity }) => (
-        <div>
-          {Vinyl ? (
-            <div key={Vinyl.id}>
-              <p className="price">Vinyl:{Vinyl.vinylName}</p>
-              <img className="cartimage" src={Vinyl.imageUrl} alt="item" />
-              <p className="price">Price: ${Vinyl.price}</p>{" "}
-              <button
-                onClick={async () => {
-                  await dispatch(
-                    decrementVinylOrder({ userId, VinylId: Vinyl.id, quantity })
-                  );
-                  await dispatch(fetchVinylOrders(userId));
-                }}
-              >
-                -
-              </button>
-              <p>{quantity}</p>
-              <button
-                onClick={async () => {
-                  await dispatch(
-                    incrementVinylOrder({ userId, VinylId: Vinyl.id, quantity })
-                  );
-                  await dispatch(fetchVinylOrders(userId));
-                }}
-              >
-                +
-              </button>
-              <button
-                onClick={async () => {
-                  await dispatch(
-                    removeVinylOrder({ userId, VinylId: Vinyl.id })
-                  );
-                  await dispatch(fetchVinylOrders(userId));
-                }}
-              >
-                Remove from cart
-              </button>
-            </div>
-          ) : null}
-        </div>
-      ))}
+      <Typography fontFamily="Barlow Condensed">
+        {vinylOrder?.map(({ Vinyl, quantity }) => (
+          <div key={Vinyl.id}>
+            {Vinyl ? (
+              <div>
+                <Typography
+                  variant="h1"
+                  sx={{
+                    fontSize: "36px",
+                    fontFamily: "Barlow Condensed",
+                    fontStyle: "italic",
+                  }}
+                >
+                  {Vinyl.vinylName}
+                </Typography>
+                <img className="cartimage" src={Vinyl.imageUrl} alt="item" />
+                <p className="price">Price: ${Vinyl.price}</p>{" "}
+                <Button
+                  onClick={async () => {
+                    await dispatch(
+                      decrementVinylOrder({
+                        userId,
+                        VinylId: Vinyl.id,
+                        quantity,
+                      })
+                    );
+                    await dispatch(fetchVinylOrders(userId));
+                  }}
+                >
+                  -
+                </Button>
+                {quantity}
+                <Button
+                  onClick={async () => {
+                    await dispatch(
+                      incrementVinylOrder({
+                        userId,
+                        VinylId: Vinyl.id,
+                        quantity,
+                      })
+                    );
+                    dispatch(fetchVinylOrders(userId));
+                  }}
+                >
+                  +
+                </Button>
+                <Button
+                  onClick={async () => {
+                    await dispatch(
+                      removeVinylOrder({ userId, VinylId: Vinyl.id })
+                    );
+                    await dispatch(fetchVinylOrders(userId));
+                  }}
+                >
+                  Remove from cart
+                </Button>
+              </div>
+            ) : null}
+          </div>
+        ))}
+      </Typography>
     </>
   );
 }

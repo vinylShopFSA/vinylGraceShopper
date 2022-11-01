@@ -40,7 +40,12 @@ const AllVinyls = () => {
                           </Typography>
                         </Button>
                         <br></br>
-                        <img src={imageUrl} loading="lazy" />
+                        <img
+                          src={imageUrl}
+                          loading="lazy"
+                          width="350px"
+                          height="350px"
+                        />
                       </Link>
                       <br></br>
                       <Button
@@ -71,7 +76,5 @@ const AllVinyls = () => {
     </div>
   );
 };
-
-
 
 export default AllVinyls;
