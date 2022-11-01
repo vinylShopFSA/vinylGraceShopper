@@ -9,7 +9,7 @@ import {
 import { Button, Typography } from "@mui/material";
 
 function VinylOrderComponent(props) {
-  const { } = props;
+  const {} = props;
   const dispatch = useDispatch();
 
   const vinylOrder = useSelector((state) => {
@@ -17,9 +17,7 @@ function VinylOrderComponent(props) {
   });
 
   useEffect(() => {
-    if (userId) {
-      dispatch(fetchVinylOrders());
-    }
+    dispatch(fetchVinylOrders());
   }, []);
 
   return (
@@ -45,7 +43,6 @@ function VinylOrderComponent(props) {
                   onClick={async () => {
                     await dispatch(
                       decrementVinylOrder({
-                        userId,
                         VinylId: Vinyl.id,
                         quantity,
                       })
@@ -60,7 +57,6 @@ function VinylOrderComponent(props) {
                   onClick={async () => {
                     await dispatch(
                       incrementVinylOrder({
-                        userId,
                         VinylId: Vinyl.id,
                         quantity,
                       })
@@ -72,9 +68,7 @@ function VinylOrderComponent(props) {
                 </Button>
                 <Button
                   onClick={async () => {
-                    await dispatch(
-                      removeVinylOrder({ userId, VinylId: Vinyl.id })
-                    );
+                    await dispatch(removeVinylOrder({ VinylId: Vinyl.id }));
                     await dispatch(fetchVinylOrders());
                   }}
                 >

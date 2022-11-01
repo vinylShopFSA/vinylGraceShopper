@@ -15,16 +15,16 @@ export const fetchVinylOrders = createAsyncThunk(
   "/vinylOrder/cart",
   async () => {
     const token = window.localStorage.getItem(TOKEN);
-    if (token) {
-      const { data } = await axios.get(`/api/vinylOrder/cart`, {
-        headers: {
-          Authorization: token,
-        },
-      });
-      return data;
-    } else {
-      return window.localStorage.setItem("cart", JSON.stringify(state.items));
-    }
+    // if (token) {
+    const { data } = await axios.get(`/api/vinylOrder/cart`, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    return data;
+    // } else {
+    //   return window.localStorage.setItem("cart", JSON.stringify(state.items));
+    // }
   }
 );
 
