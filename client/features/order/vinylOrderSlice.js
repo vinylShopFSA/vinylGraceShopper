@@ -2,16 +2,29 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 const TOKEN = "token";
 
+// const initialState = {
+//   const token = window.localStorage.getItem(TOKEN);
+//   if (token){
+//     JSON.parse(window.localStorage.getItem("cart"))
+//   } else {
+//     []
+//   }
+// }
+
 export const fetchVinylOrders = createAsyncThunk(
   "/vinylOrder/cart",
   async () => {
     const token = window.localStorage.getItem(TOKEN);
-    const { data } = await axios.get(`/api/vinylOrder/cart`, {
-      headers: {
-        authorization: token,
-      },
-    });
-    return data;
+    if (token) {
+      const { data } = await axios.get(`/api/vinylOrder/cart`, {
+        headers: {
+          Authorization: token,
+        },
+      });
+      return data;
+    } else {
+      return window.localStorage.setItem("cart", JSON.stringify(state.items));
+    }
   }
 );
 
@@ -28,7 +41,7 @@ export const addVinylOrder = createAsyncThunk(
         },
         {
           headers: {
-            authorization: token,
+            Authorization: token,
           },
         }
       );
@@ -49,7 +62,7 @@ export const incrementVinylOrder = createAsyncThunk(
       },
       {
         headers: {
-          authorization: token,
+          Authorization: token,
         },
       }
     );
@@ -70,7 +83,7 @@ export const decrementVinylOrder = createAsyncThunk(
         },
         {
           headers: {
-            authorization: token,
+            Authorization: token,
           },
         }
       );
@@ -87,7 +100,7 @@ export const removeVinylOrder = createAsyncThunk(
     const token = window.localStorage.getItem(TOKEN);
     const { data } = await axios.delete(`/api/vinylOrder/cart/${VinylId}`, {
       headers: {
-        authorization: token,
+        Authorization: token,
       },
     });
     return data;
@@ -96,7 +109,7 @@ export const removeVinylOrder = createAsyncThunk(
 
 export const vinylOrderSlice = createSlice({
   name: "vinylOrder",
-  initialState: [],
+  initialState: JSON.parse(window.localStorage.getItem("cart")) || [],
   reducers: {},
   extraReducers: (builder) => {
     builder
