@@ -18,7 +18,7 @@ router.get("/", checkUser, checkAdmin, async (req, res, next) => {
     }
   });
   
-  router.get("/:id", checkUser,async (req, res, next) => {
+  router.get("/:id", checkUser, checkAdmin, async (req, res, next) => {
     try {
       const user = await User.findByPk(req.params.id);
       res.json(user);
@@ -27,7 +27,7 @@ router.get("/", checkUser, checkAdmin, async (req, res, next) => {
     }
   });
   
-  router.put("/:id", checkUser,checkAdmin,async (req, res, next) => {
+  router.put("/:id", checkUser,checkAdmin, async (req, res, next) => {
     try {
       const user = await User.findByPk(req.params.id);
       await user.update(req.body);

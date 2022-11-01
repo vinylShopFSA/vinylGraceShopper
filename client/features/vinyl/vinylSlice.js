@@ -19,6 +19,7 @@ export const addNewVinyl = createAsyncThunk("addVinyl", async (vinyl) => {
           authorization:token,
         }
       });
+
       return data;
     }
   } catch (err) {

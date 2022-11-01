@@ -78,9 +78,6 @@ const AppRoutes = (props) => {
             element={<OrderComponent userId={userId} />}
           />
           <Route path="/checkout" element={<Checkout />} />
-
-          {/* <Route path="/" element={<Home />} /> */}
-          {/* <Route to="/home" element={<Home />} /> */}
           {isAdmin && <Route  path="/userList" element={<ViewUser/>} />}
           {isAdmin && <Route  path="/addAlbum" element={<AddRecord/>} />}
 

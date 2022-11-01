@@ -17,16 +17,10 @@ const AddRecord = () => {
   const [label, setLabel] = useState("")
   const [vinylName, setVinylName] = useState("")
 
-  //add all the handlers 
-  // const handleChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setState((state) => ({ ...state, [name]: value }));
-  // };
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(addNewVinyl({year, price,imageUrl,quantity,artist,description,genre,label,vinylName,}));
+    dispatch(addNewVinyl({year, price,imageUrl,quantity,artist,description,genre,label,vinylName}));
     navigate("/");
   };
 
@@ -51,27 +45,27 @@ const AddRecord = () => {
           <div>
             <label htmlFor="price"></label>
             <input
-              onChange={handleChange}
+              onChange={(e) => setPrice(e.target.value)}
               name="price"
-              value={state.price}
+              value={price}
               placeholder="Price"
               required />
           </div>
           <div>
             <label htmlFor="year"></label>
             <input
-              onChange={handleChange}
+              onChange={(e) => setYear(e.target.value)}
               name="year"
-              value={state.year}
+              value={year}
               placeholder="Release year"
               required/>
           </div>
           <div>
             <label htmlFor="artist"></label>
             <input
-              onChange={handleChange}
+              onChange={(e) => setArtist(e.target.value)}
               name="artist"
-              value={state.artist}
+              value={artist}
               placeholder="Artist/s"
               required
             />
@@ -79,9 +73,9 @@ const AddRecord = () => {
           <div >
             <label htmlFor="image"></label>
             <input
-              onChange={handleChange}
+             onChange={(e) => setImageUrl(e.target.value)}
               name="imageUrl"
-              value={state.imageUrl}
+              value={imageUrl}
               placeholder="Album Artwork"
             />
           </div>
@@ -98,9 +92,9 @@ const AddRecord = () => {
           <div>
             <label htmlFor="genre"></label>
             <input
-              onChange={handleChange}
+              onChange={(e) => setGenre(e.target.value)}
               name="genre"
-              value={state.genre}
+              value={genre}
               placeholder="Music Genre"
               required
             />
@@ -108,18 +102,17 @@ const AddRecord = () => {
           <div>
             <label htmlFor="label"></label>
             <input
-              onChange={handleChange}
+              onChange={(e) => setLabel(e.target.value)}
               name="label"
-              value={state.label}
+              value={label}
               placeholder="Record Label"
             />
           </div>
           <div>
             <label htmlFor="quantity"></label>
             <input
-              onChange={handleChange}
-              name="quantity"
-              value={state.quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+              value={quantity}
               placeholder="Quantity"
               required
             />
