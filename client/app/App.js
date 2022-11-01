@@ -23,7 +23,7 @@ const App = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(fetchVinylOrders(userId));
+      dispatch(fetchVinylOrders());
     }
   }, []);
 
@@ -44,9 +44,7 @@ const App = () => {
 
   return (
     <div>
-      <Navbar 
-      countCartItems={getTotalQuantity() || 0} 
-      />
+      <Navbar countCartItems={getTotalQuantity() || 0} />
       <AppRoutes />
     </div>
   );

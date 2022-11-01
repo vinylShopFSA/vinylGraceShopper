@@ -3,14 +3,16 @@ const {
   models: { Order, Vinyl, VinylOrder, User },
 } = require("../db");
 
+const { checkUser } = require("./checkers");
+
 //getting a specific user's unfilled order (cart)
 //http://localhost:8080/api/orders/users/:userId
 //this the rought to get the orders for specific user
-router.get("/:userId/cart", async (req, res, next) => {
+router.get("/cart", checkUser, async (req, res, next) => {
   try {
     const userOrder = await Order.findOne({
       where: {
-        userId: req.params.userId,
+        userId: req.user.id,
         status: "unfulfilled",
       },
       include: [VinylOrder],
@@ -21,12 +23,12 @@ router.get("/:userId/cart", async (req, res, next) => {
   }
 });
 
-router.post("/:userId", async (req, res, next) => {
+router.post("/cart", checkUser, async (req, res, next) => {
   try {
     const order = await Order.create({
-      where: { userId: req.params.userId },
+      where: { userId: req.user.id },
       // userId:req.user.id
-      userId: req.params.userId,
+      userId: req.user.id,
       status: "unfulfilled",
     });
     res.send(order);
@@ -35,11 +37,11 @@ router.post("/:userId", async (req, res, next) => {
   }
 });
 
-router.put("/:userId/checkout", async (req, res, next) => {
+router.put("/checkout", async (req, res, next) => {
   try {
     const order = await Order.findOne({
       where: {
-        userId: req.params.userId,
+        userId: req.user.id,
         status: "unfulfilled",
       },
     });

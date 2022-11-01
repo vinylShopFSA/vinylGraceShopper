@@ -18,8 +18,8 @@ const OrderComponent = () => {
 
   useEffect(() => {
     if (userId) {
-      dispatch(fetchSingleOrder(userId));
-      dispatch(fetchVinylOrders(userId));
+      dispatch(fetchSingleOrder());
+      dispatch(fetchVinylOrders());
     }
   }, []);
 
@@ -36,7 +36,7 @@ const OrderComponent = () => {
               </div>
               <button
                 onClick={async () => {
-                  checkout(userId);
+                  checkout();
                   navigate("/checkout");
                 }}
               >
