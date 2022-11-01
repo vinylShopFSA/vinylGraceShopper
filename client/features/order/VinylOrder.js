@@ -17,7 +17,7 @@ function VinylOrderComponent(props) {
 
   useEffect(() => {
     if (userId) {
-      dispatch(fetchVinylOrders(userId));
+      dispatch(fetchVinylOrders());
     }
   }, []);
 
@@ -33,9 +33,9 @@ function VinylOrderComponent(props) {
               <button
                 onClick={async () => {
                   await dispatch(
-                    decrementVinylOrder({ userId, VinylId: Vinyl.id, quantity })
+                    decrementVinylOrder({ VinylId: Vinyl.id, quantity })
                   );
-                  await dispatch(fetchVinylOrders(userId));
+                  await dispatch(fetchVinylOrders());
                 }}
               >
                 -
@@ -44,19 +44,17 @@ function VinylOrderComponent(props) {
               <button
                 onClick={async () => {
                   await dispatch(
-                    incrementVinylOrder({ userId, VinylId: Vinyl.id, quantity })
+                    incrementVinylOrder({ VinylId: Vinyl.id, quantity })
                   );
-                  await dispatch(fetchVinylOrders(userId));
+                  await dispatch(fetchVinylOrders());
                 }}
               >
                 +
               </button>
               <button
                 onClick={async () => {
-                  await dispatch(
-                    removeVinylOrder({ userId, VinylId: Vinyl.id })
-                  );
-                  await dispatch(fetchVinylOrders(userId));
+                  await dispatch(removeVinylOrder({ VinylId: Vinyl.id }));
+                  await dispatch(fetchVinylOrders());
                 }}
               >
                 Remove from cart

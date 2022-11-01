@@ -59,7 +59,7 @@ export const incrementVinylOrder = createAsyncThunk(
 
 export const decrementVinylOrder = createAsyncThunk(
   "decrementVinylOrder",
-  async ({ userId, VinylId, quantity }) => {
+  async ({ VinylId, quantity }) => {
     const token = window.localStorage.getItem(TOKEN);
     if (quantity > 0) {
       quantity--;
@@ -76,7 +76,7 @@ export const decrementVinylOrder = createAsyncThunk(
       );
       return data;
     } else {
-      removeVinylOrder({ userId, VinylId, quantity });
+      removeVinylOrder({ VinylId, quantity });
     }
   }
 );
