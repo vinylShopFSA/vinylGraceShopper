@@ -15,7 +15,6 @@ async function seed() {
 
   // Creating Users
   const users = await Promise.all([
-
     User.create({
       username: "cody",
       email: "cody123@gmail.com",
@@ -179,6 +178,347 @@ async function seed() {
       genre: "pop",
       imageUrl:
         "https://upload.wikimedia.org/wikipedia/en/f/fb/FMacRumours.PNG",
+    }),
+    Vinyl.create({
+      vinylName: "The Miseducation of Lauryn Hill",
+      year: "1998",
+      quantity: 3,
+      price: 16.99,
+      artist: "Lauryn Hill",
+      description: "coolest record",
+      genre: "R&B",
+      imageUrl:
+        "https://upload.wikimedia.org/wikipedia/en/5/55/LaurynHillTheMiseducationofLaurynHillalbumcover.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Innervisions",
+      year: "1973",
+      quantity: 3,
+      price: 16.99,
+      artist: "Stevie Wonder",
+      description: "coolest record",
+      genre: "Soul",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-034-Stevie-Wonder-Innervisions.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Kind of Blue",
+      year: "1959",
+      quantity: 3,
+      price: 16.99,
+      artist: "Miles Davis",
+      description: "coolest record",
+      genre: "Jazz",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-031-Miles-Davis-KIND-OF-BLUE.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Are You Experienced",
+      year: "1967",
+      quantity: 3,
+      price: 16.99,
+      artist: "Jimi Hendrix",
+      description: "coolest record",
+      genre: "Blues",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-030-Jimi-Hendrix-Exp-ARE-YOU-EXPERIENCED.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "The Chronic",
+      year: "1992",
+      quantity: 3,
+      price: 16.99,
+      artist: "Dr. Dre",
+      description: "coolest record",
+      genre: "Hip-Hop",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-037-dr-dre-the-chronic.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Aquemini",
+      year: "1998",
+      quantity: 3,
+      price: 16.99,
+      artist: "OutKast",
+      description: "coolest record",
+      genre: "Hip-Hop",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-049-Outkast-Aquemini.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "First Take",
+      year: "1969",
+      quantity: 3,
+      price: 16.99,
+      artist: "Roberta Flack",
+      description: "coolest record",
+      genre: "pop",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-451-Roberta-Flack-First-Take.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Man on the Moon: The End of the Day",
+      year: "2009",
+      quantity: 3,
+      price: 16.99,
+      artist: "Kid Cudi",
+      description: "coolest record",
+      genre: "Hip-Hop",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-459-Kid-Cudi-Man-of-the-Moon.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Channel Orange",
+      year: "2012",
+      quantity: 3,
+      price: 16.99,
+      artist: "Frank Ocean",
+      description: "coolest record",
+      genre: "pop",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-148-Frank-Ocean-Channel-Orange.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Definitely Maybe",
+      year: "1994",
+      quantity: 3,
+      price: 16.99,
+      artist: "Oasis",
+      description: "coolest record",
+      genre: "pop",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-217-Oasis-Definitely-Maybe.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "The Velvet Underground",
+      year: "1969",
+      quantity: 3,
+      price: 16.99,
+      artist: "The Velvet Underground",
+      description: "coolest record",
+      genre: "Rock",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-143-The-Velvet-Underground-The-Velvet-Underground.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Sticky Fingers",
+      year: "1971",
+      quantity: 3,
+      price: 16.99,
+      artist: "The Rolling Stones",
+      description: "coolest record",
+      genre: "pop",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-104-The-Rolling-Stones-Sticky-Fingers.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Forever Changes",
+      year: "1967",
+      quantity: 3,
+      price: 16.99,
+      artist: "Love",
+      description: "coolest record",
+      genre: "pop",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-139-Love-Forever-Changes.jpg?w=1000",
+    }),
+    Vinyl.create({
+      vinylName: "American Beauty",
+      year: "1970",
+      quantity: 3,
+      price: 16.99,
+      artist: "Grateful Dead",
+      description: "coolest record",
+      genre: "Rock",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-215-Grateful-Dead-American-Beauty.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Wild is the Wind",
+      year: "1966",
+      quantity: 3,
+      price: 16.99,
+      artist: "Nina Simone",
+      description: "coolest record",
+      genre: "pop",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-212-Nina-Simone-Wild-is-the-Wind.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Eagles",
+      year: "1972",
+      quantity: 3,
+      price: 16.99,
+      artist: "Eagles",
+      description: "coolest record",
+      genre: "Rock",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-207-Eagles-the-Eagles.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Live at the Regal",
+      year: "1965",
+      quantity: 3,
+      price: 16.99,
+      artist: "B.B. King",
+      description: "coolest record",
+      genre: "Blue",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-299-BB-King-Live-at-the-Regal.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Random Access Memories",
+      year: "2013",
+      quantity: 3,
+      price: 16.99,
+      artist: "Daft Punk",
+      description: "coolest record",
+      genre: "Disco",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-295-Daft-Punk-Random-Access-Memories.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Curtis",
+      year: "1970",
+      quantity: 3,
+      price: 16.99,
+      artist: "Curtis Mayfield",
+      description: "coolest record",
+      genre: "R&B",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-275-Curtis-Mayfield-Curtis.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Head Hunters",
+      year: "1973",
+      quantity: 3,
+      price: 16.99,
+      artist: "Herbie Hancock",
+      description: "coolest record",
+      genre: "Funk",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-254-Herbie-Hancock-Head-Hunters.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "AM",
+      year: "2013",
+      quantity: 3,
+      price: 16.99,
+      artist: "Arctic Monkeys",
+      description: "coolest record",
+      genre: "Rock",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-346-Arctic-Monkeys-AM.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Funky Kingston",
+      year: "1973",
+      quantity: 3,
+      price: 16.99,
+      artist: "Toots and the Maytals",
+      description: "coolest record",
+      genre: "Roots, Reggae",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-344-Toots-and-the-Maytals-Funky-Kingston.jpg?w=1000",
+    }),
+    Vinyl.create({
+      vinylName: "Donuts",
+      year: "2006",
+      quantity: 3,
+      price: 16.99,
+      artist: "J Dilla",
+      description: "coolest record",
+      genre: "Hip-Hop",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-386-jdilla-donuts.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Illmatic",
+      year: "1994",
+      quantity: 3,
+      price: 16.99,
+      artist: "Nas",
+      description: "coolest record",
+      genre: "Hip-Hop",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-044-Nas-Illmatic.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Back to Black",
+      year: "2006",
+      quantity: 3,
+      price: 16.99,
+      artist: "Amy Winehouse,",
+      description: "coolest record",
+      genre: "Soul",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-033-Amy-Winehouse-Back-to-Black.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Nevermind",
+      year: "1991",
+      quantity: 3,
+      price: 16.99,
+      artist: "Nirvana",
+      description: "coolest record",
+      genre: "Grunge",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-006-Nirvana-NEVERMIND-HR.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Ready to Die",
+      year: "1994",
+      quantity: 3,
+      price: 16.99,
+      artist: "The Notorious B.I.G.",
+      description: "coolest record",
+      genre: "Hip-Hop",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-022-notorious-BIG-ready-to-die.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Sign O’ the Times",
+      year: "2006",
+      quantity: 3,
+      price: 16.99,
+      artist: "Prince",
+      description: "coolest record",
+      genre: "Rock",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-045-Prince-Sign-O-the-Times.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Superfly",
+      year: "1972",
+      quantity: 3,
+      price: 16.99,
+      artist: "Curtis Mayfield",
+      description: "coolest record",
+      genre: "Soul",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-076-Curtis-Mayfield-Superfly.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Live at the Apollo",
+      year: "1963",
+      quantity: 3,
+      price: 16.99,
+      artist: "James Brown",
+      description: "coolest record",
+      genre: "Soul",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-065-James-Brown-Live-at-the-Apollo.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Station to Station",
+      year: "1976",
+      quantity: 3,
+      price: 16.99,
+      artist: "David Bowie",
+      description: "coolest record",
+      genre: "Rock",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-052-David-Bowie-Station-to-Station.jpg",
     }),
   ]);
   // Creating Orders
