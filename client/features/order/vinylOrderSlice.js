@@ -20,7 +20,7 @@ export const fetchVinylOrders = createAsyncThunk(
       headers: {
         Authorization: token,
       },
-    });
+  });
     return data;
     // } else {
     //   return window.localStorage.setItem("cart", JSON.stringify(state.items));
