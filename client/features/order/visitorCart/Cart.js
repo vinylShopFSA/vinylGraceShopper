@@ -5,13 +5,15 @@ import {
   decrementQuantity,
   incrementQuantity,
   removeItem,
-  sum,
+  clearStorage,
 } from "./cartSlice";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
   const dispatch = useDispatch();
 
   const vinylOrder = useSelector((state) => state.cart);
+  const navigate = useNavigate();
 
   const sum = () => {
     let subtotal = 0;
@@ -76,8 +78,9 @@ function Cart() {
       </div>
       <button
         onClick={async () => {
-          checkout();
           navigate("/checkout");
+          localStorage.removeItem("cart");
+          clearStorage();
         }}
       >
         Checkout

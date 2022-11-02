@@ -59,6 +59,7 @@ const AppRoutes = (props) => {
           element={<AuthForm name="login" displayName="Login" />}
         />
         <Route path="/" element={<Home />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
       {isLoggedIn ? (
         <Routes>
