@@ -9,14 +9,14 @@ router.get("/cart", checkUser, async (req, res, next) => {
   try {
     //get unfulfilled cart
 
-    const cart = await Order.findOne({
+    const cart = await Order.findOrCreate({
       where: { userId: req.user.id, status: "unfulfilled" },
     });
 
     //get the vinylOrders for the cart
     if (cart) {
       const vinylOrders = await VinylOrder.findAll({
-        where: { orderId: cart.id },
+        where: { orderId: cart[0].id },
         include: [Vinyl],
       });
       res.json(vinylOrders);
@@ -28,10 +28,10 @@ router.get("/cart", checkUser, async (req, res, next) => {
   }
 });
 
-//GET api/vinylOrder/:userId/cart/:id
+//GET api/vinylOrder//cart/:id
 router.get("/cart/:id", checkUser, async (req, res, next) => {
   try {
-    const cart = await Order.findOne({
+    const cart = await Order.findOrCreate({
       where: { userId: req.user.id, status: "unfulfilled" },
     });
 
@@ -39,7 +39,7 @@ router.get("/cart/:id", checkUser, async (req, res, next) => {
     if (cart) {
       const singleItem = await VinylOrder.findOne({
         where: {
-          orderId: cart.id,
+          orderId: cart[0].id,
           id: req.params.id,
         },
         include: [Vinyl],
@@ -57,14 +57,13 @@ router.get("/cart/:id", checkUser, async (req, res, next) => {
 //POST api/vinylOrder/:userId/cart
 router.post("/cart", checkUser, async (req, res, next) => {
   try {
-    const cart = await Order.findOne({
+    const cart = await Order.findOrCreate({
       where: { userId: req.user.id, status: "unfulfilled" },
     });
-
     if (cart) {
       const newRecord = await VinylOrder.findOrCreate({
         where: {
-          orderId: cart.id,
+          orderId: cart[0].id,
           VinylId: req.body.VinylId,
         },
         defaults: {
@@ -83,13 +82,13 @@ router.post("/cart", checkUser, async (req, res, next) => {
 
 router.put("/cart/:VinylId", checkUser, async (req, res, next) => {
   try {
-    const cart = await Order.findOne({
+    const cart = await Order.findOrCreate({
       where: { userId: req.user.id, status: "unfulfilled" },
     });
     if (cart) {
       const vinylOrder = await VinylOrder.findOne({
         where: {
-          orderId: cart.id,
+          orderId: cart[0].id,
           VinylId: req.params.VinylId,
         },
         returning: true,
