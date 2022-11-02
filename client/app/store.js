@@ -4,10 +4,11 @@ import authReducer from "../features/auth/authSlice";
 import vinylReducer from "../features/vinyl/vinylSlice";
 import singleVinylReducer from "../features/vinyl/singleVinylSlice";
 
-import userReducer from "../features/user/userSlice"
+import userReducer from "../features/user/userSlice";
 import singleUserReducer from "../features/user/singleUserSlice";
 import orderReducer from "../features/order/orderSlice";
 import vinylOrderReducer from "../features/order/vinylOrderSlice";
+import cartReducer from "../features/order/visitorCart/cartSlice";
 
 const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
     user: singleUserReducer,
     order: orderReducer,
     vinylOrder: vinylOrderReducer,
+    cart: cartReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
