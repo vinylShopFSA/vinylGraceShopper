@@ -1,3 +1,4 @@
+import { StarRateOutlined } from "@mui/icons-material";
 import { createSlice } from "@reduxjs/toolkit";
 
 const cartSlice = createSlice({
@@ -36,9 +37,17 @@ const cartSlice = createSlice({
       localStorage.setItem("cart", JSON.stringify(state));
       return state;
     },
-    clearStorage: (state) => {
+    clearStorage: (state, action) => {
       state = [];
       localStorage.setItem("cart", JSON.stringify(state));
+    },
+    sum: (state, action) => {
+      let subtotal = 0;
+      state.map((item) => {
+        item.quantity *= item.price;
+        subtotal += item.quantity;
+      });
+      return subtotal;
     },
   },
 });
@@ -50,4 +59,5 @@ export const {
   decrementQuantity,
   removeItem,
   clearStorage,
+  sum,
 } = cartSlice.actions;

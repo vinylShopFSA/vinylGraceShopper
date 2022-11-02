@@ -1,12 +1,25 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Typography } from "@mui/material";
-import { decrementQuantity, incrementQuantity, removeItem } from "./cartSlice";
+import {
+  decrementQuantity,
+  incrementQuantity,
+  removeItem,
+  sum,
+} from "./cartSlice";
 
 function Cart() {
   const dispatch = useDispatch();
 
   const vinylOrder = useSelector((state) => state.cart);
+
+  const sum = () => {
+    let subtotal = 0;
+    vinylOrder.map((item) => {
+      subtotal += item.price * item.quantity;
+    });
+    return subtotal;
+  };
 
   return (
     <>
@@ -58,6 +71,9 @@ function Cart() {
           </div>
         ))}
       </Typography>
+      <div>
+        <p>Here is your total: ${sum()}</p>
+      </div>
       <button
         onClick={async () => {
           checkout();
