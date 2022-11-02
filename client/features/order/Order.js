@@ -15,17 +15,17 @@ const OrderComponent = () => {
   const userId = user.id;
 
   const cart = useSelector((state) => state.order.singleOrder);
-  const vinylOrder = useSelector((state) => state.vinylOrder)
+  const vinylOrder = useSelector((state) => state.vinylOrder);
 
-  let subtotal = 0
+  let subtotal = 0;
 
-const sum = () =>{
-  vinylOrder.map(({ Vinyl, quantity}) => {
-        quantity *= Vinyl.price
-       subtotal += quantity
-  })
-return subtotal
-}
+  const sum = () => {
+    vinylOrder.map(({ Vinyl, quantity }) => {
+      quantity *= Vinyl.price;
+      subtotal += quantity;
+    });
+    return subtotal;
+  };
 
   useEffect(() => {
     if (userId) {
@@ -33,7 +33,6 @@ return subtotal
       dispatch(fetchVinylOrders());
     }
   }, []);
-
 
   return (
     <div className="cart__left">
@@ -47,13 +46,13 @@ return subtotal
                 <VinylOrderComponent userId={userId} />
               </div>
               <div>
-             <div> 
-              <p>Here is your total: ${sum()}</p>
-             </div>
+                <div>
+                  <p>Here is your total: ${sum()}</p>
+                </div>
               </div>
               <button
                 onClick={async () => {
-                  checkout();
+                  dispatch(checkout(cart.id));
                   navigate("/checkout");
                 }}
               >

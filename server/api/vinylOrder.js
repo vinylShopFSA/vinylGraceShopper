@@ -60,7 +60,6 @@ router.post("/cart", checkUser, async (req, res, next) => {
     const cart = await Order.findOrCreate({
       where: { userId: req.user.id, status: "unfulfilled" },
     });
-
     if (cart) {
       const newRecord = await VinylOrder.findOrCreate({
         where: {

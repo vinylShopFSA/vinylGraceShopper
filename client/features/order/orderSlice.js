@@ -32,15 +32,14 @@ export const addOrder = createAsyncThunk(
   }
 );
 
-export const checkout = createAsyncThunk("orders/checkout", async () => {
-  const token = window.localStorage.getItem(TOKEN);
-  const { data } = await axios.put(`/api/orders/checkout`, {
-    headers: {
-      authorization: token,
-    },
-  });
-  return data;
-});
+export const checkout = createAsyncThunk(
+  "orders/checkout/:orderId",
+  async (orderId) => {
+    // const token = window.localStorage.getItem(TOKEN);
+    const { data } = await axios.put(`/api/orders/checkout/${orderId}`);
+    return data;
+  }
+);
 
 export const orderSlice = createSlice({
   name: "order",
@@ -58,7 +57,7 @@ export const orderSlice = createSlice({
         state.allOrders.push(action.payload);
       })
       .addCase(checkout.fulfilled, (state, action) => {
-        state.singleOrder = action.payload;
+        console.log(action.payload);
       });
   },
 });

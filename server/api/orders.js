@@ -1,12 +1,11 @@
 const router = require("express").Router();
+const { request } = require("express");
 const {
-  models: { Order, Vinyl, VinylOrder, User },
+  models: { Order, Vinyl, User, VinylOrder },
 } = require("../db");
-
 const { checkUser } = require("./checkers");
 
 //getting a specific user's unfilled order (cart)
-//http://localhost:8080/api/orders/users/:userId
 //this the rought to get the orders for specific user
 router.get("/cart", checkUser, async (req, res, next) => {
   try {
@@ -27,7 +26,6 @@ router.post("/cart", checkUser, async (req, res, next) => {
   try {
     const order = await Order.create({
       where: { userId: req.user.id },
-      // userId:req.user.id
       userId: req.user.id,
       status: "unfulfilled",
     });
@@ -37,19 +35,12 @@ router.post("/cart", checkUser, async (req, res, next) => {
   }
 });
 
-router.put("/checkout", async (req, res, next) => {
+router.put("/checkout/:orderId", async (req, res, next) => {
   try {
     const order = await Order.findOne({
-      where: {
-        userId: req.user.id,
-        status: "unfulfilled",
-      },
+      where: { id: req.params.orderId, status: "unfulfilled" },
     });
-    if (order) {
-      res.json(await order.update({ status: "fulfilled" }));
-    } else {
-      res.status(404).json({ message: "No unfufilled cart found" });
-    }
+    res.send(await order.update({ status: "fulfilled" }));
   } catch (err) {
     next(err);
   }
