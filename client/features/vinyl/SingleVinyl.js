@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { addVinylOrder, fetchVinylOrders } from "../order/vinylOrderSlice";
 import { addVinylToCart } from "../order/visitorCart/cartSlice";
 import { Button, Stack, Item, Typography, ListItemText } from "@mui/material/";
+import { addVinylToCart } from "../order/visitorCart/cartSlice";
 
 const SingleVinyl = () => {
   const user = useSelector((state) => state.auth.me);
@@ -60,7 +61,6 @@ const SingleVinyl = () => {
       <h3>Release Year: {year}</h3>
       <h3>Description: {description}</h3>
       <h3>Record Label: {label}</h3>
-
       <h3>Items in Stock: {quantity}</h3>
       <Typography
         sx={{

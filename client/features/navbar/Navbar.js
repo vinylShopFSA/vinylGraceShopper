@@ -40,7 +40,6 @@ const Navbar = (props) => {
 
         <Typography sx={{ marginLeft: "auto" }}>
         <SearchBar/>
-      
           {isLoggedIn ? (
             <Link to="/currentOrder">
               <h4>
