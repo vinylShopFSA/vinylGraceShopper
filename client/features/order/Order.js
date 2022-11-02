@@ -20,7 +20,7 @@ const OrderComponent = () => {
   let subtotal = 0;
 
   const sum = () => {
-    vinylOrder.map(({ Vinyl, quantity }) => {
+    vinylOrder?.map(({ Vinyl, quantity }) => {
       quantity *= Vinyl.price;
       subtotal += quantity;
     });
