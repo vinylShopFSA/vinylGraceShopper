@@ -10,6 +10,7 @@ import {
   Typography,
   Button,
 } from "@mui/material";
+import SearchBar from "../search/SearchBar";
 
 const Navbar = (props) => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
@@ -38,6 +39,7 @@ const Navbar = (props) => {
         </Typography>
 
         <Typography sx={{ marginLeft: "auto" }}>
+        <SearchBar/>
           {isLoggedIn ? (
             <Link to="/currentOrder">
               <h4>
