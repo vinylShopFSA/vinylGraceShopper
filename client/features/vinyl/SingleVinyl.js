@@ -4,6 +4,7 @@ import { fetchSingleVinyl } from "./singleVinylSlice";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addVinylOrder, fetchVinylOrders } from "../order/vinylOrderSlice";
+import { addVinylToCart } from "../order/visitorCart/cartSlice";
 import { Button, Stack, Item, Typography, ListItemText } from "@mui/material/";
 
 const SingleVinyl = () => {
@@ -60,56 +61,49 @@ const SingleVinyl = () => {
       <h3>Description: {description}</h3>
       <h3>Record Label: {label}</h3>
 
-      {quantity > 0 ? (
-        <Typography
-          sx={{
-            fontWeight: "Bold",
-            fontFamily: "Barlow Condensed",
-            fontSize: "20px",
-            justifyContent: "flex-start",
-          }}
-        >
-          <Typography
-            fontFamily="Barlow Condensed"
-            sx={{ fontWeight: 800, fontSize: "18px" }}
-          >
-            <h3>Items in Stock: {quantity}</h3>
-          </Typography>
-          <Button
-            variant="outlined"
-            onClick={async () => {
+      <h3>Items in Stock: {quantity}</h3>
+      <Typography
+        sx={{
+          fontWeight: "Bold",
+          fontFamily: "Barlow Condensed",
+          fontSize: "20px",
+          justifyContent: "flex-start",
+        }}
+      >
+        <Button
+          variant="outlined"
+          onClick={async () => {
+            if (userId) {
               await dispatch(
                 addVinylOrder({ userId, VinylId: parseInt(id), quantity: 1 })
               );
               await dispatch(fetchVinylOrders(userId));
-            }}
-          >
-            <Typography
-              sx={{
-                fontFamily: "Barlow Condensed",
-                fontWeight: "Bold",
-                fontSize: "18px",
-                justifyContent: "flex-start",
-              }}
-            >
-              Add to Cart
-            </Typography>
-          </Button>{" "}
-          to purchase today for the low price of ${price}
-        </Typography>
-      ) : (
-        <Typography
-          sx={{
-            fontFamily: "Barlow Condensed",
-            fontWeight: "Bold",
-            fontSize: "18px",
-            textDecoration: "underline",
+            } else {
+              dispatch(
+                addVinylToCart({
+                  id,
+                  artist,
+                  vinylName,
+                  price,
+                  imageUrl,
+                })
+              );
+            }
           }}
         >
-          {" "}
-          Out of Stock!{" "}
-        </Typography>
-      )}
+          <Typography
+            sx={{
+              fontFamily: "Barlow Condensed",
+              fontWeight: "Bold",
+              fontSize: "18px",
+              justifyContent: "flex-start",
+            }}
+          >
+            Add to Cart
+          </Typography>
+        </Button>{" "}
+        to purchase today for the low price of ${price}
+      </Typography>
     </Typography>
   );
 };

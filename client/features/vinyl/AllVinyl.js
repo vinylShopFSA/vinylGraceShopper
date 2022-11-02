@@ -4,6 +4,7 @@ import { fetchVinyls } from "./vinylSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addVinylOrder, fetchVinylOrders } from "../order/vinylOrderSlice";
+import { addVinylToCart } from "../order/visitorCart/cartSlice";
 import {
   Button,
   CardContent,
@@ -59,50 +60,64 @@ const AllVinyls = () => {
         <img src="https://i.ibb.co/sj1f5kH/Albums-3.png" width="300px"></img>
         <Grid container>
           {vinyls && vinyls.length
-            ? vinyls.map(({ id, artist, vinylName, price, imageUrl }) => {
-                return (
-                  <Grid item key={id} xs={12} sm={6} md={4} lg={4}>
-                    <CardContent>
-                      <Link to={`/singleVinyl/${id}`}>
-                        <Button>
-                          <Typography
-                            variant="h6"
-                            fontFamily="Barlow Condensed"
-                          >
-                            {artist}: {vinylName}
+            ? vinyls
+                .map(({ id, artist, vinylName, price, imageUrl }) => {
+                  return (
+                    <Grid item key={id} xs={12} sm={6} md={4} lg={4}>
+                      <CardContent>
+                        <Link to={`/singleVinyl/${id}`}>
+                          <Button>
+                            <Typography
+                              variant="h6"
+                              fontFamily="Barlow Condensed"
+                            >
+                              {artist}: {vinylName}
+                            </Typography>
+                          </Button>
+                          <br></br>
+                          <img
+                            src={imageUrl}
+                            loading="lazy"
+                            width="350px"
+                            height="350px"
+                          />
+                        </Link>
+                        <br></br>
+                        <Button
+                          variant="outlined"
+                          aria-label="Add to Collection"
+                          onClick={async () => {
+                            if (userId) {
+                              await dispatch(
+                                addVinylOrder({
+                                  userId,
+                                  VinylId: id,
+                                  quantity: 1,
+                                })
+                              );
+                              await dispatch(fetchVinylOrders(userId));
+                            } else {
+                              dispatch(
+                                addVinylToCart({
+                                  id,
+                                  artist,
+                                  vinylName,
+                                  price,
+                                  imageUrl,
+                                })
+                              );
+                            }
+                          }}
+                        >
+                          <Typography fontFamily="Barlow Condensed">
+                            Add to Cart ${price}
                           </Typography>
                         </Button>
-                        <br></br>
-                        <img
-                          src={imageUrl}
-                          loading="lazy"
-                          width="350px"
-                          height="350px"
-                        />
-                      </Link>
-                      <br></br>
-                      <Button
-                        variant="outlined"
-                        aria-label="Add to Collection"
-                        onClick={async () => {
-                          await dispatch(
-                            addVinylOrder({
-                              userId,
-                              VinylId: id,
-                              quantity: 1,
-                            })
-                          );
-                          await dispatch(fetchVinylOrders(userId));
-                        }}
-                      >
-                        <Typography fontFamily="Barlow Condensed">
-                          Add to Cart ${price}
-                        </Typography>
-                      </Button>
-                    </CardContent>
-                  </Grid>
-                );
-              }).slice(indexOfFirstPost, indexOfLastPost)
+                      </CardContent>
+                    </Grid>
+                  );
+                })
+                .slice(indexOfFirstPost, indexOfLastPost)
             : null}
         </Grid>
         <Box
