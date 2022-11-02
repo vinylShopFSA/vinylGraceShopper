@@ -105,7 +105,7 @@ async function seed() {
     Vinyl.create({
       vinylName: "The Wall",
       year: "1979",
-      quantity: 3,
+      quantity: 0,
       price: 16.99,
       artist: "Pink Floyd",
       description: "coolest record",
@@ -248,7 +248,7 @@ async function seed() {
     Vinyl.create({
       vinylName: "First Take",
       year: "1969",
-      quantity: 3,
+      quantity: 0,
       price: 16.99,
       artist: "Roberta Flack",
       description: "coolest record",
@@ -347,7 +347,7 @@ async function seed() {
     Vinyl.create({
       vinylName: "Eagles",
       year: "1972",
-      quantity: 3,
+      quantity: 0,
       price: 16.99,
       artist: "Eagles",
       description: "coolest record",
@@ -545,7 +545,7 @@ async function seed() {
     Vinyl.create({
       vinylName: "Straight Outta Compton",
       year: "1988",
-      quantity: 3,
+      quantity: 0,
       price: 16.99,
       artist: "N.W.A",
       description: "coolest record",
