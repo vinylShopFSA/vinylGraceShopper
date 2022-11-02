@@ -21,6 +21,12 @@ const App = () => {
     return state.vinylOrder;
   });
 
+  if (userId) {
+    cart = useSelector((state) => state.vinylOrder);
+  } else {
+    cart = useSelector((state) => state.cart);
+  }
+
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(fetchVinylOrders());
@@ -39,11 +45,9 @@ const App = () => {
     cart.forEach((item) => {
       total += item.quantity;
     });
-  
+
     return total;
-
   };
-
 
   return (
     <div>

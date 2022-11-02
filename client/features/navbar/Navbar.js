@@ -23,7 +23,7 @@ const Navbar = (props) => {
   };
 
   return (
-<AppBar position="static" color="transparent">
+    <AppBar position="static" color="transparent">
       <Toolbar>
         <Typography>
           <Link to="/">
@@ -38,30 +38,40 @@ const Navbar = (props) => {
         </Typography>
 
         <Typography sx={{ marginLeft: "auto" }}>
-        <Link to="/currentOrder">
-          <h4>
-          <Badge badgeContent={countCartItems} color="primary">
-                <IconButton>
-            <img
-              src="https://freepngimg.com/thumb/categories/1325.png"
-              width="40px"
-            ></img>
-            {/* {countCartItems} items */}
-            </IconButton>
-              </Badge>
-          </h4>
-        </Link>
+          {isLoggedIn ? (
+            <Link to="/currentOrder">
+              <h4>
+                <Badge badgeContent={countCartItems} color="primary">
+                  <IconButton>
+                    <img
+                      src="https://freepngimg.com/thumb/categories/1325.png"
+                      width="40px"
+                    ></img>
+                  </IconButton>
+                </Badge>
+              </h4>
+            </Link>
+          ) : (
+            <Link to="/cart">
+              <h4>
+                <Badge badgeContent={countCartItems} color="primary">
+                  <IconButton>
+                    <img
+                      src="https://freepngimg.com/thumb/categories/1325.png"
+                      width="40px"
+                    ></img>
+                  </IconButton>
+                </Badge>
+              </h4>
+            </Link>
+          )}
           <nav>
             {isLoggedIn ? (
               <div>
                 {/* The navbar will show these links after you log in */}
-                <Link to = "/userProfile">View Profile </Link>
-            {isAdmin && (
-                  <Link
-                    to="/userList" > View User List </Link> )}
-            {isAdmin && (
-                  <Link
-                    to="/addAlbum" > Add an Album </Link> )}
+                <Link to="/userProfile">View Profile </Link>
+                {isAdmin && <Link to="/userList"> View User List </Link>}
+                {isAdmin && <Link to="/addAlbum"> Add an Album </Link>}
                 <Link to="/">Home</Link>
                 <button type="button" onClick={logoutAndRedirectHome}>
                   Logout
@@ -85,4 +95,4 @@ const Navbar = (props) => {
   );
 };
 
-export default Navbar
+export default Navbar;

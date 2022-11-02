@@ -11,6 +11,7 @@ import ViewUser from "../features/admin/ViewUsers";
 import AddRecord from "../features/admin/AddRecord";
 import OrderComponent from "../features/order/Order";
 import Checkout from "../features/order/Checkout";
+import Cart from "../features/order/visitorCart/Cart";
 
 /**
  * COMPONENT
@@ -19,12 +20,10 @@ import Checkout from "../features/order/Checkout";
 const AppRoutes = (props) => {
   const { onAdd, onRemove } = props;
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  const isAdmin = useSelector((state) => !!state.auth.me.isAdmin)
+  const isAdmin = useSelector((state) => !!state.auth.me.isAdmin);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.me);
   const userId = user.id;
-
-
 
   useEffect(() => {
     dispatch(me());
@@ -36,57 +35,54 @@ const AppRoutes = (props) => {
 
   return (
     <div>
-        <Routes>
-        <Route path = "/allVinyls" element = {<AllVinyls/>}/>
-           <Route
-            path="/singleVinyl/:id"
-            element={
-              <SingleVinyl
-                name="singleVinyl"
-                displayName="singleVinyl"
-                onAdd={onAdd}
-                onRemove={onRemove}
-              />
-            }
-          />
-          <Route />
-
-          <Route
-            path="/signup"
-            element={<AuthForm name="signup" displayName="Sign Up" />}
-          />
-          <Route
-            path="/login"
-            element={<AuthForm name="login" displayName="Login" />}
-          />
-         <Route path="/" element={<Home/>} />
-
-        </Routes>
+      <Routes>
+        <Route path="/allVinyls" element={<AllVinyls />} />
+        <Route
+          path="/singleVinyl/:id"
+          element={
+            <SingleVinyl
+              name="singleVinyl"
+              displayName="singleVinyl"
+              onAdd={onAdd}
+              onRemove={onRemove}
+            />
+          }
+        />
+        <Route />
+        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/signup"
+          element={<AuthForm name="signup" displayName="Sign Up" />}
+        />
+        <Route
+          path="/login"
+          element={<AuthForm name="login" displayName="Login" />}
+        />
+        <Route path="/" element={<Home />} />
+      </Routes>
       {isLoggedIn ? (
         <Routes>
-              <Route
+          <Route
             path="/allVinyls"
             element={
               <AllVinyls
                 name="allVinyls"
                 displayName="All Vinyls"
                 userId={userId}
-              />}/>
-           <Route path="/userProfile" element={<UserProfile/>} />
-           <Route
+              />
+            }
+          />
+          <Route path="/userProfile" element={<UserProfile />} />
+          <Route
             path="/currentOrder"
             element={<OrderComponent userId={userId} />}
           />
           <Route path="/checkout" element={<Checkout />} />
-          {isAdmin && <Route  path="/userList" element={<ViewUser/>} />}
-          {isAdmin && <Route  path="/addAlbum" element={<AddRecord/>} />}
-
-
+          {isAdmin && <Route path="/userList" element={<ViewUser />} />}
+          {isAdmin && <Route path="/addAlbum" element={<AddRecord />} />}
         </Routes>
       ) : (
-        <Routes>
-     
-        </Routes>
+        <Routes></Routes>
       )}
     </div>
   );

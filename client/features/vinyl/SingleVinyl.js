@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addVinylOrder, fetchVinylOrders } from "../order/vinylOrderSlice";
 import { Button, Stack, Item, Typography, ListItemText } from "@mui/material/";
+import { addVinylToCart } from "../order/visitorCart/cartSlice";
 
 const SingleVinyl = () => {
   const user = useSelector((state) => state.auth.me);
@@ -72,10 +73,26 @@ const SingleVinyl = () => {
         <Button
           variant="outlined"
           onClick={async () => {
-            await dispatch(
-              addVinylOrder({ userId, VinylId: parseInt(id), quantity: 1 })
-            );
-            await dispatch(fetchVinylOrders(userId));
+            if (userId) {
+              await dispatch(
+                addVinylOrder({
+                  userId,
+                  VinylId: id,
+                  quantity: 1,
+                })
+              );
+              await dispatch(fetchVinylOrders(userId));
+            } else {
+              dispatch(
+                addVinylToCart({
+                  id,
+                  artist,
+                  vinylName,
+                  price,
+                  imageUrl,
+                })
+              );
+            }
           }}
         >
           <Typography
