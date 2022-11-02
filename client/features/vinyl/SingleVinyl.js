@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { fetchSingleVinyl } from "./singleVinylSlice";
 import { useDispatch } from "react-redux";
@@ -24,11 +24,23 @@ const SingleVinyl = () => {
     quantity,
   } = useSelector((state) => state.singleVinyl);
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     dispatch(fetchSingleVinyl(id));
   }, []);
 
-  return (
+  useEffect(() => {
+    if (vinylName) {
+      setLoading(false);
+    }
+  }, [vinylName]);
+
+  return loading ? (
+    <Typography>
+      <img src="https://i.ibb.co/3F9Q14c/Albums-2.gif"></img>
+    </Typography>
+  ) : (
     <Typography fontFamily="Barlow Condensed">
       <Typography
         sx={{
