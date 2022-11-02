@@ -61,6 +61,7 @@ const SingleVinyl = () => {
       <h3>Description: {description}</h3>
       <h3>Record Label: {label}</h3>
 
+
       <h3>Items in Stock: {quantity}</h3>
       <Typography
         sx={{
@@ -93,21 +94,58 @@ const SingleVinyl = () => {
                 })
               );
             }
+
+      {quantity > 0 ? (
+        <Typography
+          sx={{
+            fontWeight: "Bold",
+            fontFamily: "Barlow Condensed",
+            fontSize: "20px",
+            justifyContent: "flex-start",
+
           }}
         >
           <Typography
-            sx={{
-              fontFamily: "Barlow Condensed",
-              fontWeight: "Bold",
-              fontSize: "18px",
-              justifyContent: "flex-start",
+            fontFamily="Barlow Condensed"
+            sx={{ fontWeight: 800, fontSize: "18px" }}
+          >
+            <h3>Items in Stock: {quantity}</h3>
+          </Typography>
+          <Button
+            variant="outlined"
+            onClick={async () => {
+              await dispatch(
+                addVinylOrder({ userId, VinylId: parseInt(id), quantity: 1 })
+              );
+              await dispatch(fetchVinylOrders(userId));
             }}
           >
-            Add to Cart
-          </Typography>
-        </Button>{" "}
-        to purchase today for the low price of ${price}
-      </Typography>
+            <Typography
+              sx={{
+                fontFamily: "Barlow Condensed",
+                fontWeight: "Bold",
+                fontSize: "18px",
+                justifyContent: "flex-start",
+              }}
+            >
+              Add to Cart
+            </Typography>
+          </Button>{" "}
+          to purchase today for the low price of ${price}
+        </Typography>
+      ) : (
+        <Typography
+          sx={{
+            fontFamily: "Barlow Condensed",
+            fontWeight: "Bold",
+            fontSize: "18px",
+            textDecoration: "underline",
+          }}
+        >
+          {" "}
+          Out of Stock!{" "}
+        </Typography>
+      )}
     </Typography>
   );
 };
