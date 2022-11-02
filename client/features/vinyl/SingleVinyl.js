@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import { addVinylOrder, fetchVinylOrders } from "../order/vinylOrderSlice";
 import { addVinylToCart } from "../order/visitorCart/cartSlice";
 import { Button, Stack, Item, Typography, ListItemText } from "@mui/material/";
-import { addVinylToCart } from "../order/visitorCart/cartSlice";
 
 const SingleVinyl = () => {
   const user = useSelector((state) => state.auth.me);
