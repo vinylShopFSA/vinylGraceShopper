@@ -1,10 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { fetchVinyls } from "./vinylSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addVinylOrder, fetchVinylOrders } from "../order/vinylOrderSlice";
-import { Button, CardContent, Grid, Typography } from "@mui/material";
+import {
+  Button,
+  CardContent,
+  Grid,
+  Typography,
+  Pagination,
+  Box,
+} from "@mui/material";
 
 /**
  * COMPONENT
@@ -13,6 +20,10 @@ const AllVinyls = () => {
   const user = useSelector((state) => state.auth.me);
   const userId = user.id;
 
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(9);
+
   const dispatch = useDispatch();
   const vinyls = useSelector((state) => state.vinyl);
 
@@ -20,7 +31,29 @@ const AllVinyls = () => {
     dispatch(fetchVinyls());
   }, []);
 
-  return (
+  useEffect(() => {
+    if (vinyls.length > 0) {
+      setLoading(false);
+    }
+  }, [vinyls]);
+
+  // checking whether we've loaded
+  useEffect(() => {
+    if (vinyls.length > 0) {
+      setLoading(false);
+    }
+  }, [vinyls]);
+
+  //Get current posts
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+
+  return loading ? (
+    <Typography>
+      <img src="https://i.ibb.co/3F9Q14c/Albums-2.gif"></img>
+    </Typography>
+  ) : (
     <div>
       <div>
         <img src="https://i.ibb.co/sj1f5kH/Albums-3.png" width="300px"></img>
@@ -69,9 +102,20 @@ const AllVinyls = () => {
                     </CardContent>
                   </Grid>
                 );
-              })
+              }).slice(indexOfFirstPost, indexOfLastPost)
             : null}
         </Grid>
+        <Box
+          justifyContent={"center"}
+          alignItems="center"
+          display={"flex"}
+          sx={{ margin: "20px 0px" }}
+        >
+          <Pagination
+            count={Math.ceil(vinyls.length / 9)}
+            onChange={(e, value) => setCurrentPage(value)}
+          />
+        </Box>
       </div>
     </div>
   );

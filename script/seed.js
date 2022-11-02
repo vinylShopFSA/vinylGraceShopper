@@ -520,6 +520,124 @@ async function seed() {
       imageUrl:
         "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-052-David-Bowie-Station-to-Station.jpg",
     }),
+    Vinyl.create({
+      vinylName: "Stankonia",
+      year: "2000",
+      quantity: 3,
+      price: 16.99,
+      artist: "OutKast",
+      description: "coolest record",
+      genre: "Hip-Hop",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-064-outkast-stankonia.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "The Great Twenty-Eight",
+      year: "1982",
+      quantity: 3,
+      price: 16.99,
+      artist: "Chuck Berry",
+      description: "coolest record",
+      genre: "Rock",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-051-Chuck-Berry-The-Great-Twenty-Eight.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Straight Outta Compton",
+      year: "1988",
+      quantity: 3,
+      price: 16.99,
+      artist: "N.W.A",
+      description: "coolest record",
+      genre: "Hip-Hop",
+      label: "RUTHLESS",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-070-nwa-straight-outta-compton.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "A Love Supreme",
+      year: "1965",
+      quantity: 3,
+      price: 16.99,
+      artist: "John Coltrane",
+      description: "coolest record",
+      genre: "Jazz",
+      label: "IMPULSE",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-066-John-Coltrane-A-Love-Supreme.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Who’s Next",
+      year: "1971",
+      quantity: 3,
+      price: 16.99,
+      artist: "The Who",
+      description: "coolest record",
+      genre: "Rock",
+      label: "DECCA",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-077-The-Who-Who_s-Next.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Baduizm",
+      year: "1997",
+      quantity: 3,
+      price: 16.99,
+      artist: "Erykah Badu",
+      description: "coolest record",
+      genre: "R&B",
+      label: "KEDAR",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-089-Erykah-Badu-Baduizm.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Supa Dupa Fly",
+      year: "1997",
+      quantity: 3,
+      price: 16.99,
+      artist: "Missy Elliott",
+      description: "coolest record",
+      genre: "Hip-Hop",
+      label: "GOLDMIND",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-093-Missy-Misdemeanor-Elliott-Supa-Dupa-Fly.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "This Year’s Model",
+      year: "1978",
+      quantity: 3,
+      price: 16.99,
+      artist: "Elvis Costello",
+      description: "coolest record",
+      genre: "Rock",
+      label: "COLUMBIA",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-121-Elvis-Costello-This-Years-Model.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "good kid, m.A.A.d city",
+      year: "2012",
+      quantity: 3,
+      price: 16.99,
+      artist: "Kendrick Lamar",
+      description: "coolest record",
+      genre: "Hip-Hop",
+      label: "TDE",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-115-Kendrick-Lamar-Good-Kid-Maad-City.jpg",
+    }),
+    Vinyl.create({
+      vinylName: "Goodbye Yellow Brick Road",
+      year: "1973",
+      quantity: 3,
+      price: 16.99,
+      artist: "Elton John",
+      description: "coolest record",
+      genre: "Rock",
+      label: "MCA",
+      imageUrl:
+        "https://www.rollingstone.com/wp-content/uploads/2020/09/R1344-112-Elton-John-Goodbye-Yellow-Brick-Road.jpg",
+    }),
   ]);
   // Creating Orders
   const orders = await Promise.all([
