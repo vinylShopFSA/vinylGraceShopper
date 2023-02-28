@@ -1,4 +1,4 @@
-# FS-App-Template
+The Groove Record Store
 
 ## Setup
 
